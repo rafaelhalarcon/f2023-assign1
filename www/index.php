@@ -1,4 +1,4 @@
-<?php ?>
+<?php include('./configdb.inc.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,23 @@
 </head>
 </head>
 <body>
-    
+    <h1>Is this working</h1>
+
+    <?php
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM genres";
+        $result = $pdo->query($sql);
+        //loop through the data
+        while ($row = $result->fetch()) {
+            echo $row['genre_id'] . " - " . $row['genre_name'] . "<br>";
+        }
+        $pdo = null;
+    } catch (PDOException $e) {
+        die($e->getMessage());
+        echo "not connected";
+    }
+    ?>
 </body>
 </html>
