@@ -4,8 +4,6 @@ include('./phpcomponents.inc.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
     <head>
         <meta charset="UTF-8">
         <meta charset="UTF-8">
@@ -23,7 +21,9 @@ include('./phpcomponents.inc.php') ?>
         <link rel="icon" type="image/x-icon" href="">
         <title>Music browser</title>
     </head>
-</head>
+<header>
+    <?=navBarHead('Modern Music Player', '#', '#', '#', '#')?>
+</header>
 
 <body>
     <h1>Is this working</h1>
