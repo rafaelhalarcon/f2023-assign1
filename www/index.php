@@ -32,11 +32,11 @@ include('./phpcomponents.inc.php') ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM genres";
+        $sql = "SELECT s.title, a.artist_name FROM songs s join artists a using (artist_id);";
         $result = $pdo->query($sql);
         //loop through the data
         while ($row = $result->fetch()) {
-            echo $row['genre_id'] . " - " . $row['genre_name'] . "<br>";
+            echo $row['title'] . " - " . $row['artist_name'] . "<br>";
         }
         $pdo = null;
     } catch (PDOException $e) {
