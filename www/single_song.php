@@ -18,6 +18,9 @@ include './phpcomponents.inc.php'; ?>
         <title>Song Detail</title>
     </head>
 </head>
+<header>
+    <?= navBarHead('Modern Music Player', '#', '#', '#', '#') ?>
+</header>
 
 <body>
     <?php
@@ -42,6 +45,7 @@ include './phpcomponents.inc.php'; ?>
         echo "not connected";
     }
     ?>
+    
     <section>
         <h2 style="text-transform: capitalize;">SONG: <?= $row['title'] ?></h2>
         <fieldset>
@@ -71,5 +75,8 @@ include './phpcomponents.inc.php'; ?>
 
 
 </body>
+<footer>
+    <?= footer(); ?>
+</footer>
 
 </html>

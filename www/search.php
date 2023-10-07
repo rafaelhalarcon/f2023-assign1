@@ -18,6 +18,9 @@
     </head>
 </head>
 
+<header>
+    <?= navBarHead('Modern Music Player', '#', '#', '#', '#') ?>
+</header>
 <body>
     <form action="./browse_search_results.php" method="GET" id="form">
         <fieldset>
@@ -28,7 +31,7 @@
             <label for="artist">Artist</label>
             <input id="artist" type="select">
             <input type="radio" name="searchField" id="genre">
-            <label for="genre">genre</label>
+            <label for="genre">Genre</label>
             <input id="genre" type="Select">
             <fieldset>
                 <legend>Range of years</legend>
@@ -39,10 +42,13 @@
                 <input id="date2" type="number" min="2016" max="2019">
             </fieldset>
         </fieldset>
-        <input type="submit" value="Submit"></input>
+        <input type="submit" value="Submit" form_id="form"></input>
 
 
     </form>
 </body>
+<footer>
+    <?= footer(); ?>
+</footer>
 
 </html>
