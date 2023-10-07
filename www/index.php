@@ -41,11 +41,11 @@ include './phpcomponents.inc.php'; ?>
 
             </ul>
     <?php
-            print "<pre>";
-            print_r($row);
-            print_r($row['title']);
-            print_r($result);
-            print "</pre>";
+            // print "<pre>";
+            // print_r($row);
+            // print_r($row['title']);
+            // print_r($result);
+            // print "</pre>";
         }
         $pdo = null;
     } catch (PDOException $e) {
