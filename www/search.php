@@ -1,4 +1,6 @@
-<?php ?>
+<?php include './configdb.inc.php';
+include './phpcomponents.inc.php'; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
