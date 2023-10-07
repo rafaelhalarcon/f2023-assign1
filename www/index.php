@@ -1,5 +1,5 @@
-<?php include('./configdb.inc.php');
-include('./phpcomponents.inc.php') ?>
+<?php include './configdb.inc.php';
+include './phpcomponents.inc.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,15 +32,21 @@ include('./phpcomponents.inc.php') ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name FROM songs s join artists a using (artist_id);";
+        $sql = "SELECT s.title, a.artist_name, s.song_id FROM songs s join artists a using (artist_id);";
         $result = $pdo->query($sql);
         //loop through the data
         while ($row = $result->fetch()) { ?>
             <ul>
-                <li><strong><?= $row['title']?></strong> - <?=$row['artist_name']; ?></li>
+                <li><strong><?= $row['title'] ?></strong> - <?= $row['artist_name']; ?></li>
 
             </ul>
-    <?php }
+    <?php
+            print "<pre>";
+            print_r($row);
+            print_r($row['title']);
+            print_r($result);
+            print "</pre>";
+        }
         $pdo = null;
     } catch (PDOException $e) {
         die($e->getMessage());
