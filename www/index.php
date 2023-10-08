@@ -1,6 +1,7 @@
-<?php include './configdb.inc.php';
-include './phpcomponents.inc.php'; 
-include './dbclasses.php';?>
+<?php
+include './configdb.inc.php';
+include './phpcomponents.inc.php';
+include './dbclasses.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,53 +28,125 @@ include './dbclasses.php';?>
 </header>
 
 <body>
-    <h1>All songs, with join to artist name</h1>
+    <!-- <h1>All songs, with join to artist name</h1> -->
 
+    <?php
+    //try {
+    //    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    //    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //    $sql = "SELECT s.title, a.artist_name, s.song_id FROM songs s join artists a using (artist_id);";
+    //    $result = $pdo->query($sql);
+    //    //loop through the data
+    //    while ($row = $result->fetch()) { 
+    ?>
+    <!-- //        <ul> -->
+    <!-- //            <li><strong><?= $row['title'] ?></strong> - <?= $row['artist_name']; ?></li> -->
+
+    <!-- //        </ul> -->
+    <?php
+    //        // print "<pre>";
+    //        // print_r($row);
+    //        // print_r($row['title']);
+    //        // print_r($result);
+    //        // print "</pre>";
+    //    }
+    //    $pdo = null;
+    //} catch (PDOException $e) {
+    //    die($e->getMessage());
+    //    echo "not connected";
+    //}
+    //
+    //try {
+    //    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    //    $songsCatalog = new SongsDB($conn);
+    //    $songs = $songsCatalog->getAll();
+    //
+    //    // print "<pre>";
+    //    // print_r($songs);
+    //    // print_r($songs['title']);
+    //    // print "</pre>";
+    //} catch (Exception $e) {
+    //    die($e->getMessage());
+    //}
+    //foreach ($songs as $song) {
+    //    echo $song['title'] . "<br>";
+    //}
+    //
+    ?>
+    <!-- //<div></div> -->
+
+    <h2>Top Genre Based on the Number of Songs</h2>
     <?php
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.song_id FROM songs s join artists a using (artist_id);";
+        $sql = "SELECT g.genre_name, COUNT(*) as song_count
+            FROM genres g
+            INNER JOIN songs s ON g.genre_id = s.genre_id
+            GROUP BY g.genre_name
+            ORDER BY song_count DESC
+            LIMIT 10;";
         $result = $pdo->query($sql);
-        //loop through the data
-        while ($row = $result->fetch()) { ?>
-            <!-- <ul>
-                <li><strong><?= $row['title'] ?></strong> - <?= $row['artist_name']; ?></li>
-
-            </ul> -->
-    <?php
-            // print "<pre>";
-            // print_r($row);
-            // print_r($row['title']);
-            // print_r($result);
-            // print "</pre>";
+        echo "<ul>";
+        while ($row = $result->fetch()) {
+            echo "<li>{$row['genre_name']} ({$row['song_count']} songs)</li>";
         }
+        echo "</ul>";
         $pdo = null;
     } catch (PDOException $e) {
         die($e->getMessage());
         echo "not connected";
     }
+    ?>
+    <div></div>
 
+    <h2>Top Artists based on the Number of Songs</h2>
+    <?php
     try {
-        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-        $songsCatalog = new SongsDB($conn);
-        $songs = $songsCatalog->getAll();
-        
-        // print "<pre>";
-        // print_r($songs);
-        // print_r($songs['title']);
-        // print "</pre>";
-    } catch (Exception $e) {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT a.artist_name, COUNT(*) as song_count
+            FROM artists a
+            INNER JOIN songs s ON a.artist_id = s.artist_id
+            GROUP BY a.artist_name
+            ORDER BY song_count DESC
+            LIMIT 10;";
+        $result = $pdo->query($sql);
+        echo "<ul>";
+        while ($row = $result->fetch()) {
+            echo "<li>{$row['artist_name']} ({$row['song_count']} songs)</li>";
+        }
+        echo "</ul>";
+        $pdo = null;
+    } catch (PDOException $e) {
         die($e->getMessage());
+        echo "not connected";
     }
-    ?> <ul> <?php
-    foreach ($songs as $song) { ?>
-        <li>
-            <div><strong>Title</strong>  <?=$song['title'] ?> </div>
-            <div><strong>Artist</strong>  <?= $song['artist_name'] ?></div>  
-            <div><strong>Genre</strong>  <?=$song['genre_name']; } ?></div>
-    </li> 
-    
+    ?>
+    <div></div>
+
+    <h2>Most Popular Songs Sorted by Popularity</h2>
+    <?php
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT s.title, a.artist_name
+            FROM songs s
+            INNER JOIN artists a ON s.artist_id = a.artist_id
+            ORDER BY s.popularity DESC
+            LIMIT 10;";
+        $result = $pdo->query($sql);
+        echo "<ul>";
+        while ($row = $result->fetch()) {
+            echo "<li>{$row['song_id']} {$row['title']} - {$row['artist_name']}</li>";
+        }
+        echo "</ul>";
+        $pdo = null;
+    } catch (PDOException $e) {
+        die($e->getMessage());
+        echo "not connected";
+    }
+    ?>
 </body>
 <footer>
     <?= footer(); ?>

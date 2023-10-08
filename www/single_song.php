@@ -45,7 +45,7 @@ include './phpcomponents.inc.php'; ?>
         echo "not connected";
     }
     ?>
-    
+
     <section>
         <h2 style="text-transform: capitalize;">SONG: <?= $row['title'] ?></h2>
         <fieldset>

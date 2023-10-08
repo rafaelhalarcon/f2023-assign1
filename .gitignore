@@ -2,3 +2,4 @@ docker-compose.yml
 dockerfile
 php
 .git/
+www/configdb.inc.php
