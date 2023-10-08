@@ -1,5 +1,6 @@
 <?php include './configdb.inc.php';
-include './phpcomponents.inc.php'; ?>
+include './phpcomponents.inc.php'; 
+include './dbclasses.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,24 @@ include './phpcomponents.inc.php'; ?>
         die($e->getMessage());
         echo "not connected";
     }
+
+    try {
+        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+        $songsCatalog = new SongsDB($conn);
+        $songs = $songsCatalog->getAll();
+        
+        // print "<pre>";
+        // print_r($songs);
+        // print_r($songs['title']);
+        // print "</pre>";
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
+    foreach ($songs as $song) {
+        echo $song['title'] . "<br>";
+    }
     ?>
+    <div></div>
 </body>
 <footer>
     <?= footer(); ?>

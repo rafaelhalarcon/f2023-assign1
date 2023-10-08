@@ -1,5 +1,25 @@
 <?php 
 
+function getAllSongs($connection) {
+
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+
+    $songsCollection = new SongsDB($conn);
+    $songs = $songsCollection->getAll();
+}
+
+function getAllArtist($connection) {
+
+}
+
+function getAllGenre($connection) {
+
+}
+
+function getAllTypes($connection) {
+
+}
+
 class DatabaseHelper
 {
 
@@ -40,4 +60,29 @@ class DatabaseHelper
     }
 }
 
-?>
+class SongsDB extends stdClass{
+    
+    private static $baseSQL = "SELECT * FROM songs ;";
+
+    public function __construct($connection) {
+        $this->pdo = $connection;
+    }
+
+    public function getAll() {
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+}
+
+class ArtistDB {
+
+}
+
+class GenreDB {
+
+}
+
+class TypeDB {
+
+}
