@@ -130,7 +130,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name
+        $sql = "SELECT s.title, a.artist_name, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             ORDER BY s.popularity DESC
@@ -138,7 +138,7 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>{$row['song_id']} {$row['title']} - {$row['artist_name']}</li>";
+            echo "<li>" . $row['song_id'] . $row['title'] . $row['artist_name'] . "</li>";
         }
         echo "</ul>";
         $pdo = null;

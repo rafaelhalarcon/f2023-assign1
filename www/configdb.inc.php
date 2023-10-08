@@ -1,5 +1,5 @@
 <?php
-define('DBHOST', 'localhost');
+define('DBHOST', 'db');
 define('DBNAME', 'music');
 define('DBUSER', 'root');
 define('DBPASS', '');

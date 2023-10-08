@@ -3,3 +3,4 @@ dockerfile
 php
 .git/
 www/configdb.inc.php
+www/configdb.inc.php
