@@ -26,22 +26,22 @@ include './phpcomponents.inc.php'; ?>
 <body>
     <form action="./browse_search_results.php" method="GET" id="form">
         <fieldset>
-            <input type="radio" name="searchField" id="title">
+            <input type="radio" name="searchField" value="title">
             <label for="title">Title</label>
-            <input id="title" type="text">
-            <input type="radio" name="searchField" id="artist">
+            <input id="title" type="text" name="title">
+            <input type="radio" name="searchField" value="artist">
             <label for="artist">Artist</label>
-            <input id="artist" type="select">
-            <input type="radio" name="searchField" id="genre">
+            <input id="artist" type="select" name="artist">
+            <input type="radio" name="searchField" value="genre">
             <label for="genre">Genre</label>
-            <input id="genre" type="Select">
+            <input id="genre" type="Select" name="genre">
             <fieldset>
                 <legend>Range of years</legend>
-                <input type="radio" name="searchField" id="date">
+                <input type="radio" name="searchField" value="date">
                 <label for="date1">From</label>
-                <input id="date1" type="number" min="2016" max="2019">
+                <input id="date1" type="number" min="2016" max="2019" name="date1">
                 <label for="date2">To</label>
-                <input id="date2" type="number" min="2016" max="2019">
+                <input id="date2" type="number" min="2016" max="2019" name="date2">
             </fieldset>
         </fieldset>
         <input type="submit" value="Submit" form_id="form"></input>
