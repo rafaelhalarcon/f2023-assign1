@@ -37,10 +37,10 @@ include './dbclasses.php';?>
         $result = $pdo->query($sql);
         //loop through the data
         while ($row = $result->fetch()) { ?>
-            <ul>
+            <!-- <ul>
                 <li><strong><?= $row['title'] ?></strong> - <?= $row['artist_name']; ?></li>
 
-            </ul>
+            </ul> -->
     <?php
             // print "<pre>";
             // print_r($row);
@@ -66,11 +66,14 @@ include './dbclasses.php';?>
     } catch (Exception $e) {
         die($e->getMessage());
     }
-    foreach ($songs as $song) {
-        echo $song['title'] . "<br>";
-    }
-    ?>
-    <div></div>
+    ?> <ul> <?php
+    foreach ($songs as $song) { ?>
+        <li>
+            <div><strong>Title</strong>  <?=$song['title'] ?> </div>
+            <div><strong>Artist</strong>  <?= $song['artist_name'] ?></div>  
+            <div><strong>Genre</strong>  <?=$song['genre_name']; } ?></div>
+    </li> 
+    
 </body>
 <footer>
     <?= footer(); ?>
