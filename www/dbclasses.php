@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-function getAllSongs($connection) {
+function getAllSongs($connection)
+{
 
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
@@ -8,16 +9,16 @@ function getAllSongs($connection) {
     $songs = $songsCollection->getAll();
 }
 
-function getAllArtist($connection) {
-
+function getAllArtist($connection)
+{
 }
 
-function getAllGenre($connection) {
-
+function getAllGenre($connection)
+{
 }
 
-function getAllTypes($connection) {
-
+function getAllTypes($connection)
+{
 }
 
 class DatabaseHelper
@@ -60,29 +61,36 @@ class DatabaseHelper
     }
 }
 
-class SongsDB extends stdClass{
-    
-    private static $baseSQL = "SELECT * FROM songs ;";
+class SongsDB extends stdClass
+{
 
-    public function __construct($connection) {
+    private static $baseSQL = "SELECT s.song_id, s.title, a.artist_name AS artist_name, g.genre_name AS genre_name, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5), s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
+    FROM songs s
+       JOIN artists a ON s.artist_id=a.artist_id
+       JOIN genres g ON s.genre_id=g.genre_id
+       JOIN types t ON a.artist_type_id=t.type_id;";
+
+    public function __construct($connection)
+    {
         $this->pdo = $connection;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $sql = self::$baseSQL;
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
 }
 
-class ArtistDB {
-
+class ArtistDB
+{
 }
 
-class GenreDB {
-
+class GenreDB
+{
 }
 
-class TypeDB {
-
+class TypeDB
+{
 }
