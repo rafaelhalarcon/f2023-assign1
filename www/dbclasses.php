@@ -21,6 +21,13 @@ function getAllTypes($connection)
 {
 }
 
+function findSongsTitle($search) {
+    $conn = DatabaseHelper::createConnection(DBCONNSTRING, DBUSER, DBPASS);
+
+    $songsCollection = new SongsDB($conn);
+    
+}
+
 class DatabaseHelper
 {
 
@@ -64,7 +71,11 @@ class DatabaseHelper
 class SongsDB extends stdClass
 {
 
-    private static $baseSQL = "SELECT * FROM songs ;";
+    private static $baseSQL = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
+    FROM songs s
+       JOIN artists a ON s.artist_id=a.artist_id
+       JOIN genres g ON s.genre_id=g.genre_id
+       JOIN types t ON a.artist_type_id=t.type_id;";
 
     public function __construct($connection)
     {
