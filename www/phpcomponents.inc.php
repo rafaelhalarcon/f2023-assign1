@@ -5,7 +5,7 @@ function navBarHead($title, $link1, $link2, $link3, $link4)
     $link1 = 'index.php';
     $link2 = 'browse_search_results.php';
     $link3 = 'search.php';
-    $link4 = ''; ?>
+    $link4 = 'aboutUs.php'; ?>
     <h1> | COMP3512 | Web Application Development II | Assignment 1</h1>
     <h1><?= $title ?></h1>
     <nav>
