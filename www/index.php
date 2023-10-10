@@ -90,7 +90,7 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['song_id'] . $row['title'] . $row['artist_name'] . "</li>";
+            echo "<li>" . $row['title'] . $row['artist_name'] . "</li>";
         }
         echo "</ul>";
         $pdo = null;

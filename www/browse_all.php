@@ -54,7 +54,7 @@ include './dbclasses.php'; ?>
                         <td><?= $song['artist_name'] ?></td>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
-                        <td><button <?= addToFav($song) ?>>Fav</button></td>
+                        <td><button <?= addToFav($song['song_id']) ?>>Fav</button></td>
                         <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
                     </tr>
                 <?php } ?>
