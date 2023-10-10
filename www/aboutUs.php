@@ -1,4 +1,6 @@
-<?php ?>
+<?php include './configdb.inc.php';
+include './phpcomponents.inc.php';
+include './dbclasses.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +22,9 @@
     <link rel="icon" type="image/x-icon" href="">
     <title>Music browser</title>
 </head>
+<header>
+    <?= navBarHead('Modern Music Player', '#', '#', '#', '#') ?>
+</header>
 
 <body>
 
