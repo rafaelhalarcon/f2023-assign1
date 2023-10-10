@@ -27,6 +27,14 @@ function outputSingleSong() {
 
 }
 
+function truncateTitle25 ($string){
+    if (strlen($string) >= 25){
+        return substr($string, 0, 25) . "...";
+    } else {
+        return $string;
+    }
+}
+
 class DatabaseHelper
 {
 

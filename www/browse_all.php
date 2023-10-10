@@ -53,7 +53,7 @@ include './dbclasses.php'; ?>
             <tbody>
                 <?php foreach ($songs as $song) { ?>
                     <tr>
-                        <td><?= $song['title'] ?></td>
+                        <td><?= truncateTitle25($song['title'])?></td>
                         <td><?= $song['artist_name'] ?></td>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
