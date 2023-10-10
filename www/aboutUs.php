@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8">
@@ -19,7 +20,12 @@
     <link rel="icon" type="image/x-icon" href="">
     <title>Music browser</title>
 </head>
+
 <body>
-    
+
 </body>
+<footer>
+    <?= footer(); ?>
+</footer>
+
 </html>
