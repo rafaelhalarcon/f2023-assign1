@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
+
     <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,7 +20,9 @@
     <link rel="icon" type="image/x-icon" href="">
     <title>Favourites</title>
 </head>
-</head>
+<header>
+    <?= navBarHead('Modern Music Player', '#', '#', '#', '#') ?>
+</header>
 <body>
     
 </body>
