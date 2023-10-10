@@ -12,7 +12,7 @@ include './dbclasses.php'; ?>
     <meta name="author" content="Arthur Bakir and Rafael Hernandez Alarcon" />
     <meta name="keywords" content="Music BPM Energy danceability acoustic" />
     <meta name="description" content="WEBII assignment 1 music browser" />
-    <link rel="stylesheet" href="../style/reset.css">
+    <link href="./style/reset.css" rel="stylesheet"/>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
