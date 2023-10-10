@@ -1,7 +1,6 @@
 <?php
 function getAllSongs($connection)
 {
-
     $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
     $songsCollection = new SongsDB($conn);
@@ -18,6 +17,15 @@ function getAllGenre($connection)
 
 function getAllTypes($connection)
 {
+}
+
+function outputSongs ($array) {
+    $conn = new DatabaseHelpercreateConnection(DBCONNSTRING, DBUSER, DBPASS);
+    while ($array);
+}
+
+function outputSingleSong() {
+
 }
 
 class DatabaseHelper

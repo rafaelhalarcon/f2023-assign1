@@ -1,5 +1,6 @@
 <?php include './configdb.inc.php';
-include './phpcomponents.inc.php'; ?>
+include './phpcomponents.inc.php'; 
+include './dbclasses.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,58 +26,48 @@ include './phpcomponents.inc.php'; ?>
 <body>
     <?php
     try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) AS duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
-        FROM songs s
-           JOIN artists a ON s.artist_id=a.artist_id
-           JOIN genres g ON s.genre_id=g.genre_id
-           JOIN types t ON a.artist_type_id=t.type_id;";
-        $result = $pdo->query($sql);
-
-        //loop through the data
-        $songs = $row = $result->fetch();
-        $pdo = null;
-        // print "<pre>";
-        // print_r($row);
-        // print "</pre>";
-    } catch (PDOException $e) {
+        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+        $songsCatalog = new SongsDB($conn);
+        $songs = $songsCatalog->getAll();
+    } catch (Exception $e) {
         die($e->getMessage());
-        echo "not connected";
     }
+    
+    foreach ($songs as $song) {
+        if ($_GET['song_id'] == $song['song_id']) {
+
     ?>
 
     <section>
-        <h2 style="text-transform: capitalize;">SONG: <?= $row['title'] ?></h2>
+        <h2 style="text-transform: capitalize;">SONG: <?= $song['title'] ?></h2>
         <fieldset>
             <legend>Main info</legend>
-            <p><strong>Song name &nbsp;</strong><?= $row['title'] ?></p>
-            <p><strong>Artist name&nbsp;</strong><?= $row['artist_name'] ?></p>
-            <p><strong>Artist type &nbsp;</strong><?= $row['type_name'] ?></p>
-            <p><strong>Genre &nbsp;</strong><?= $row['genre_name'] ?></p>
-            <p><strong>Year &nbsp;</strong><?= $row['year'] ?></p>
-            <p><strong>Duration &nbsp;</strong><?= $row['duration'] ?></p>
+            <p><strong>Song name &nbsp;</strong><?= $song['title'] ?></p>
+            <p><strong>Artist name&nbsp;</strong><?= $song['artist_name'] ?></p>
+            <p><strong>Artist type &nbsp;</strong><?= $song['type_name'] ?></p>
+            <p><strong>Genre &nbsp;</strong><?= $song['genre_name'] ?></p>
+            <p><strong>Year &nbsp;</strong><?= $song['year'] ?></p>
+            <p><strong>Duration &nbsp;</strong><?= $song['duration'] ?></p>
         </fieldset>
         <fieldset>
             <legend>Statistics</legend>
-            <p><strong>BPM &nbsp;</strong><?= $row['bpm'] ?></p>
-            <p><strong>Energy&nbsp;</strong><?= $row['energy'] ?></p>
-            <p><strong>Danceability &nbsp;</strong><?= $row['danceability'] ?></p>
-            <p><strong>Loudness &nbsp;</strong><?= $row['loudness'] ?></p>
-            <p><strong>Liveness &nbsp;</strong><?= $row['liveness'] ?></p>
-            <p><strong>Valence &nbsp;</strong><?= $row['valence'] ?></p>
-            <p><strong>Acousticness &nbsp;</strong><?= $row['acousticness'] ?></p>
-            <p><strong>Speechiness &nbsp;</strong><?= $row['speechiness'] ?></p>
-            <p><strong>Popularity &nbsp;</strong><?= $row['popularity'] ?></p>
+            <p><strong>BPM &nbsp;</strong><?= $song['bpm'] ?></p>
+            <p><strong>Energy&nbsp;</strong><?= $song['energy'] ?></p>
+            <p><strong>Danceability &nbsp;</strong><?= $song['danceability'] ?></p>
+            <p><strong>Loudness &nbsp;</strong><?= $song['loudness'] ?></p>
+            <p><strong>Liveness &nbsp;</strong><?= $song['liveness'] ?></p>
+            <p><strong>Valence &nbsp;</strong><?= $song['valence'] ?></p>
+            <p><strong>Acousticness &nbsp;</strong><?= $song['acousticness'] ?></p>
+            <p><strong>Speechiness &nbsp;</strong><?= $song['speechiness'] ?></p>
+            <p><strong>Popularity &nbsp;</strong><?= $song['popularity'] ?></p>
         </fieldset>
-
+            <?=backButton()?>
     </section>
-
-
-
 </body>
 <footer>
     <?= footer(); ?>
 </footer>
 
 </html>
+<?php }
+    }

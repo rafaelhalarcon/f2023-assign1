@@ -24,6 +24,8 @@ function footer()
     <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
 <?php }
 
-
+function backButton() {
+    ?> <button onclick="history.go(-1);"> Go Back </button> 
+<?php }
 
 ?>
