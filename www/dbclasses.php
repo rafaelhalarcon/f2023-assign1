@@ -19,26 +19,51 @@ function getAllTypes($connection)
 {
 }
 
-function outputSongs ($array) {
-    
+function outputSongs($array)
+{
 }
 
-function outputSingleSong() {
-
+function outputSingleSong()
+{
 }
 
-function truncateTitle25 ($string){
-    if (strlen($string) >= 25){
+function truncateTitle25($string)
+{
+    if (strlen($string) >= 25) {
         return substr($string, 0, 25) . "...";
     } else {
         return $string;
     }
 }
 
-function addToFav($song) {
+function addToFav($song)
+{
     session_start();
     if (isset($_POST['song_id'])) {
         $_SESSION['favourites'] = $song;
+    }
+}
+
+function search()
+{
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+
+    $songsCollection = new SongsDB($conn);
+
+    if (isset($_GET['searchField'])) {
+        if (!empty($_GET['searchField'])) {
+            switch ($_GET['searchField']) {
+
+                case "title":
+                    $songsCollection->findSongsTitle($_GET['title']);
+                case "artist":
+                    $songsCollection->findSongArtist($_GET['artist_name']);
+                case "genre":
+                    $songsCollection->findSongGenre($_GET['genre_name']);;
+                case "date":
+                    $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);;
+            }
+        }
     }
 }
 
@@ -110,7 +135,34 @@ class SongsDB extends stdClass
     {
         $sql = self::$baseSQL . " WHERE title LIKE " . "'" . "%" . "?" . "% ;";
         var_dump($sql);
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($search));
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
+
+        return $statement->fetchAll();
+    }
+
+    function findSongArtist($search)
+    {
+        $sql = self::$baseSQL . " WHERE artist_name =" . "?;";
+        var_dump($sql);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
+
+        return $statement->fetchAll();
+    }
+
+    function findSongGenre($search)
+    {
+        $sql = self::$baseSQL . " WHERE genre_name = " . "?;";
+        var_dump($sql);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
+
+        return $statement->fetchAll();
+    }
+
+    function findSongDate($date1, $date2)
+    {
+        $sql = self::$baseSQL . " WHERE year BETWEEN" . "?" . "AND" . "?;";
+        var_dump($sql);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($date1, $date2));
 
         return $statement->fetchAll();
     }
