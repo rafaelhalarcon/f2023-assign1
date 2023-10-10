@@ -20,8 +20,7 @@ function getAllTypes($connection)
 }
 
 function outputSongs ($array) {
-    $conn = new DatabaseHelpercreateConnection(DBCONNSTRING, DBUSER, DBPASS);
-    while ($array);
+    
 }
 
 function outputSingleSong() {
