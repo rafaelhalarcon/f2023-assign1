@@ -16,6 +16,12 @@ include './dbclasses.php'; ?>
         <meta name="keywords" content="Music BPM Energy danceability acoustic" />
         <meta name="description" content="WEBII assignment 1 music browser" />
         <link rel="stylesheet" href="../style/reset.css">
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="">
         <title>Song Detail</title>
     </head>
@@ -53,12 +59,12 @@ include './dbclasses.php'; ?>
             <tbody>
                 <?php foreach ($songs as $song) { ?>
                     <tr>
-                        <td><?= truncateTitle25($song['title'])?></td>
+                        <td><?= truncateTitle25($song['title']) ?></td>
                         <td><?= $song['artist_name'] ?></td>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
                         <td><button>Fav</button></td>
-                        <td><button>View</button></td>
+                        <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -66,7 +72,7 @@ include './dbclasses.php'; ?>
 
             </tfoot>
         </table>
-        <?=backButton()?>
+        <?= backButton() ?>
     </section>
     <footer>
         <?= footer(); ?>
