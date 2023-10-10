@@ -1,5 +1,4 @@
-<?php
-include './configdb.inc.php';
+<?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
 include './dbclasses.php'; ?>
 
@@ -7,7 +6,7 @@ include './dbclasses.php'; ?>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Arthur Bakir and Rafael Hernandez Alarcon" />
@@ -28,53 +27,6 @@ include './dbclasses.php'; ?>
 </header>
 
 <body>
-    <!-- <h1>All songs, with join to artist name</h1> -->
-
-    <?php
-    //try {
-    //    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    //    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //    $sql = "SELECT s.title, a.artist_name, s.song_id FROM songs s join artists a using (artist_id);";
-    //    $result = $pdo->query($sql);
-    //    //loop through the data
-    //    while ($row = $result->fetch()) { 
-    ?>
-    <!-- //        <ul> -->
-    <!-- //            <li><strong><?= $row['title'] ?></strong> - <?= $row['artist_name']; ?></li> -->
-
-    <!-- //        </ul> -->
-    <?php
-    //        // print "<pre>";
-    //        // print_r($row);
-    //        // print_r($row['title']);
-    //        // print_r($result);
-    //        // print "</pre>";
-    //    }
-    //    $pdo = null;
-    //} catch (PDOException $e) {
-    //    die($e->getMessage());
-    //    echo "not connected";
-    //}
-    //
-    //try {
-    //    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-    //    $songsCatalog = new SongsDB($conn);
-    //    $songs = $songsCatalog->getAll();
-    //
-    //    // print "<pre>";
-    //    // print_r($songs);
-    //    // print_r($songs['title']);
-    //    // print "</pre>";
-    //} catch (Exception $e) {
-    //    die($e->getMessage());
-    //}
-    //foreach ($songs as $song) {
-    //    echo $song['title'] . "<br>";
-    //}
-    //
-    ?>
-    <!-- //<div></div> -->
-
     <h2>Top Genre Based on the Number of Songs</h2>
     <?php
     try {
@@ -153,3 +105,5 @@ include './dbclasses.php'; ?>
 </footer>
 
 </html>
+
+<?php  ?>

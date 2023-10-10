@@ -35,6 +35,11 @@ function truncateTitle25 ($string){
     }
 }
 
+function addToFav($song) {
+    session_start();
+    $_SESSION['favourites'][$song['song_id']];
+}
+
 class DatabaseHelper
 {
 
