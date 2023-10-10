@@ -28,18 +28,18 @@ include './phpcomponents.inc.php'; ?>
 <body>
     <form action="./browse_search_results.php" method="GET" id="form">
         <fieldset>
-            <input type="radio" name="searchField" value="title">
+            <input type="radio" name="searchField" value="title" required>
             <label for="title">Title</label>
             <input id="title" type="text" name="title">
-            <input type="radio" name="searchField" value="artist">
+            <input type="radio" name="searchField" value="artist" required>
             <label for="artist">Artist</label>
             <input id="artist" type="select" name="artist">
-            <input type="radio" name="searchField" value="genre">
+            <input type="radio" name="searchField" value="genre" required>
             <label for="genre">Genre</label>
             <input id="genre" type="Select" name="genre">
             <fieldset>
                 <legend>Range of years</legend>
-                <input type="radio" name="searchField" value="date">
+                <input type="radio" name="searchField" value="date" required>
                 <label for="date1">From</label>
                 <input id="date1" type="number" min="2016" max="2019" name="date1">
                 <label for="date2">To</label>

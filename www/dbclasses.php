@@ -46,26 +46,48 @@ function addToFav($song)
 
 function search()
 {
-    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    try {
+        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+        $songsCatalog = new SongsDB($conn);
+        $songs = $songsCatalog->getAll();
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
 
     $songsCollection = new SongsDB($conn);
-
-    if (isset($_GET['searchField'])) {
-        if (!empty($_GET['searchField'])) {
-            switch ($_GET['searchField']) {
-
-                case "title":
-                    $songsCollection->findSongsTitle($_GET['title']);
-                case "artist":
-                    $songsCollection->findSongArtist($_GET['artist_name']);
-                case "genre":
-                    $songsCollection->findSongGenre($_GET['genre_name']);;
-                case "date":
-                    $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);;
+    foreach ($songs as $song) {
+        if (isset($_GET['searchField'])) {
+            if (!empty($_GET['searchField'])) {
+                switch ($_GET['searchField']) {
+                    case "title":
+                        echo "I am on title";
+                        if (isset($_GET['title']) && !empty($_GET['title'])) {
+                            return $songsCollection->findSongsTitle($_GET['title']);
+                        } else "No song found with that search!";
+                    case "artist":
+                        if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
+                            return $songsCollection->findSongsTitle($_GET['artist_name']);
+                        } else "No song found with that artist!";
+                        echo "I am on artist";
+                        return $songsCollection->findSongArtist($_GET['artist_name']);
+                    case "genre":
+                        if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
+                            return $songsCollection->findSongsTitle($_GET['genre_name']);
+                        } else "No song found with that genre!";
+                        echo "I am on genre";
+                        return $songsCollection->findSongGenre($_GET['genre_name']);;
+                    case "date":
+                        if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['title']) && !empty($_GET['date2']))) {
+                            return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
+                        } else "No song found with that time period!";
+                        echo "I am on date";
+                        return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);;
+                }
             }
         }
     }
 }
+
 
 class DatabaseHelper
 {
@@ -133,7 +155,7 @@ class SongsDB extends stdClass
 
     function findSongsTitle($search)
     {
-        $sql = self::$baseSQL . " WHERE title LIKE " . "'" . "%" . "?" . "% ;";
+        $sql = self::$baseSQL . " WHERE s.title LIKE " . "'" . "%" . "?" . "% ;";
         var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
@@ -142,7 +164,7 @@ class SongsDB extends stdClass
 
     function findSongArtist($search)
     {
-        $sql = self::$baseSQL . " WHERE artist_name =" . "?;";
+        $sql = self::$baseSQL . " WHERE a.artist_name =" . "?;";
         var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
@@ -151,7 +173,7 @@ class SongsDB extends stdClass
 
     function findSongGenre($search)
     {
-        $sql = self::$baseSQL . " WHERE genre_name = " . "?;";
+        $sql = self::$baseSQL . " WHERE g.genre_name = " . "?;";
         var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
@@ -160,7 +182,7 @@ class SongsDB extends stdClass
 
     function findSongDate($date1, $date2)
     {
-        $sql = self::$baseSQL . " WHERE year BETWEEN" . "?" . "AND" . "?;";
+        $sql = self::$baseSQL . " WHERE s.year BETWEEN" . "?" . "AND" . "?;";
         var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($date1, $date2));
 
