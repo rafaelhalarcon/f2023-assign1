@@ -34,9 +34,9 @@ include './phpcomponents.inc.php'; ?>
             <input type="radio" name="searchField" value="artist" required>
             <label for="artist">Artist</label>
             <input id="artist" type="select" name="artist">
-            <input type="radio" name="searchField" value="genre" required>
-            <label for="genre">Genre</label>
-            <input id="genre" type="Select" name="genre">
+            <input type="radio" name="searchField" value="genre_name" required>
+            <label for="genre_name">Genre</label>
+            <input id="genre" type="Select" name="genre_name">
             <fieldset>
                 <legend>Range of years</legend>
                 <input type="radio" name="searchField" value="date" required>

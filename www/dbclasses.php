@@ -60,7 +60,7 @@ function search()
         if (!empty($_GET['searchField'])) {
             switch ($_GET['searchField']) {
                 case "title":
-                    echo "I am on title";
+                    echo "I am on title ";
                     if (isset($_GET['title']) && !empty($_GET['title'])) {
                         foreach ($songs as $song) {
                             if ($song['title'] == $_GET['title']) {
@@ -69,24 +69,24 @@ function search()
                         }
                     }
                 case "artist":
-                    echo "I am on artist";
+                    echo "I am on artist ";
                     if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
                         foreach ($songs as $song) {
-                            if ($song['artis_name'] == $_GET['artist_name']) {
+                            if ($song['artist_name'] == $_GET['artistt_name']) {
                                 return $songsCollection->findSongsTitle($_GET['artist_name']);
                             } else "No song found with that artist!";
                         }
                     }
                 case "genre":
-                    echo "I am on genre";
+                    echo "I am on genre ";
                     if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
                         foreach ($songs as $song) {
-                            if ($song['artis_name'] == $_GET['artist_name']) {
+                            if ($song['genre_name'] == $_GET['genre_name']) {
                                 return $songsCollection->findSongsTitle($_GET['genre_name']);
                             } else "No song found with that genre!";
                         }
                     }
-                    case "date":
+                    case "date ":
                         echo "I am on date";
                         if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
                             foreach ($songs as $song) {
