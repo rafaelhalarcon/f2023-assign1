@@ -55,38 +55,54 @@ function search()
     }
 
     $songsCollection = new SongsDB($conn);
-    foreach ($songs as $song) {
-        if (isset($_GET['searchField'])) {
-            if (!empty($_GET['searchField'])) {
-                switch ($_GET['searchField']) {
-                    case "title":
-                        echo "I am on title";
-                        if (isset($_GET['title']) && !empty($_GET['title'])) {
-                            return $songsCollection->findSongsTitle($_GET['title']);
-                        } else "No song found with that search!";
-                    case "artist":
-                        if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
-                            return $songsCollection->findSongsTitle($_GET['artist_name']);
-                        } else "No song found with that artist!";
-                        echo "I am on artist";
-                        return $songsCollection->findSongArtist($_GET['artist_name']);
-                    case "genre":
-                        if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
-                            return $songsCollection->findSongsTitle($_GET['genre_name']);
-                        } else "No song found with that genre!";
-                        echo "I am on genre";
-                        return $songsCollection->findSongGenre($_GET['genre_name']);;
+
+    if (isset($_GET['searchField'])) {
+        if (!empty($_GET['searchField'])) {
+            switch ($_GET['searchField']) {
+                case "title":
+                    echo "I am on title";
+                    if (isset($_GET['title']) && !empty($_GET['title'])) {
+                        foreach ($songs as $song) {
+                            if ($song['title'] == $_GET['title']) {
+                                return $songsCollection->findSongsTitle($_GET['title']);
+                            } else "No song found with that search!";
+                        }
+                    }
+                case "artist":
+                    echo "I am on artist";
+                    if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
+                        foreach ($songs as $song) {
+                            if ($song['artis_name'] == $_GET['artist_name']) {
+                                return $songsCollection->findSongsTitle($_GET['artist_name']);
+                            } else "No song found with that artist!";
+                        }
+                    }
+                case "genre":
+                    echo "I am on genre";
+                    if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
+                        foreach ($songs as $song) {
+                            if ($song['artis_name'] == $_GET['artist_name']) {
+                                return $songsCollection->findSongsTitle($_GET['genre_name']);
+                            } else "No song found with that genre!";
+                        }
+                    }
                     case "date":
-                        if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['title']) && !empty($_GET['date2']))) {
-                            return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
-                        } else "No song found with that time period!";
                         echo "I am on date";
-                        return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);;
-                }
+                        if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
+                            foreach ($songs as $song) {
+                                if () {
+
+                                    return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
+                                }
+                            } else "No song found with that time period!";
+                        }
+
+                    
             }
         }
     }
 }
+
 
 
 class DatabaseHelper
