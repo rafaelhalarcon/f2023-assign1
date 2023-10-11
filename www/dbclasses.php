@@ -196,7 +196,7 @@ class SongsDB extends stdClass
 
     function findSongDate($date1, $date2)
     {
-        $sql = self::$baseSQL . " WHERE s.year BETWEEN " . "?" . "AND" . "?;";
+        $sql = self::$baseSQL . " WHERE s.year BETWEEN" . "?" . "AND" . "?;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($date1, $date2));
 
         return $statement->fetchAll();
