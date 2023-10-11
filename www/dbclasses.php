@@ -175,7 +175,11 @@ class SongsDB extends stdClass
 
     function findSongsTitle($search)
     {
-        $sql = self::$baseSQL . " WHERE s.title LIKE "  . "%?%;";
+       echo ($search);
+       $sql = self::$baseSQL . " WHERE s.title LIKE " . "?;";
+       $search = "%" . $search . "%";
+
+        // $sql = self::$baseSQL . " WHERE s.title REGEXP  " . "\".*?.*%\";";
         // $sql = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
         // FROM songs s
         //    JOIN artists a ON s.artist_id=a.artist_id
