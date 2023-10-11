@@ -44,8 +44,7 @@ include './dbclasses.php'; ?>
                 </tr>
             </thead>
             <tbody>
-                <?php var_dump($songs);
-                foreach ($songs as $song) { ?>
+                <?php foreach ($songs as $song) { ?>
                     <tr>
                         <td><?= truncateTitle25($song['title']) ?></td>
                         <td><?= $song['artist_name'] ?></td>
