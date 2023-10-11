@@ -211,7 +211,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             WHERE (s.bpm >= 100 AND s.bpm <= 115) AND (s.speechiness >= 1 AND s.speechiness <= 20)
@@ -220,7 +220,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]"?> </a></li> <?php 
         }
         echo "</ul>";
         $pdo = null;
