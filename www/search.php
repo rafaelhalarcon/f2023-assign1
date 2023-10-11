@@ -33,10 +33,10 @@ include './phpcomponents.inc.php'; ?>
             <input id="title" type="text" name="title">
             <input type="radio" name="searchField" value="artist" required>
             <label for="artist">Artist</label>
-            <input id="artist" type="select" name="artist">
+            <input id="artist" type="select" name="artist_name">
             <input type="radio" name="searchField" value="genre_name" required>
             <label for="genre_name">Genre</label>
-            <input id="genre" type="Select" name="genre_name">
+            <input id="genre" type="select" name="genre_name">
             <fieldset>
                 <legend>Range of years</legend>
                 <input type="radio" name="searchField" value="date" required>

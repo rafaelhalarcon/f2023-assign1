@@ -67,7 +67,7 @@ function search()
                                 return $songsCollection->findSongsTitle($_GET['title']);
                             } else "No song found with that search!";
                         }
-                    }
+                    }break;
                 case "artist":
                     echo "I am on artist ";
                     if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
@@ -76,7 +76,7 @@ function search()
                                 return $songsCollection->findSongsTitle($_GET['artist_name']);
                             } else "No song found with that artist!";
                         }
-                    }
+                    }break;
                 case "genre":
                     echo "I am on genre ";
                     if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
@@ -85,7 +85,7 @@ function search()
                                 return $songsCollection->findSongsTitle($_GET['genre_name']);
                             } else "No song found with that genre!";
                         }
-                    }
+                    }break;
                     case "date ":
                         echo "I am on date";
                         if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
@@ -97,7 +97,7 @@ function search()
                         //     } else "No song found with that time period!";
                         // }
                         }
-                        }
+                        }break;
             }
         }
     }
