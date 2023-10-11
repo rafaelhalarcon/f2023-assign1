@@ -68,25 +68,25 @@ function search()
                             } else "No song found with that search!";
                         }
                     }break;
-                case "artist":
+                case "artist_name":
                     echo "I am on artist ";
                     if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
                         foreach ($songs as $song) {
-                            if ($song['artist_name'] == $_GET['artistt_name']) {
-                                return $songsCollection->findSongsTitle($_GET['artist_name']);
+                            if ($song['artist_name'] == $_GET['artist_name']) {
+                                return $songsCollection->findSongArtist($_GET['artist_name']);
                             } else "No song found with that artist!";
                         }
                     }break;
-                case "genre":
+                case "genre_name":
                     echo "I am on genre ";
                     if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
                         foreach ($songs as $song) {
                             if ($song['genre_name'] == $_GET['genre_name']) {
-                                return $songsCollection->findSongsTitle($_GET['genre_name']);
+                                return $songsCollection->findSongGenre($_GET['genre_name']);
                             } else "No song found with that genre!";
                         }
                     }break;
-                    case "date ":
+                    case "date":
                         echo "I am on date";
                         if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
                             foreach ($songs as $song) {
@@ -192,6 +192,7 @@ class SongsDB extends stdClass
         $sql = self::$baseSQL . " WHERE g.genre_name = " . "?;";
         var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
+        var_dump($statement);
 
         return $statement->fetchAll();
     }
