@@ -29,23 +29,10 @@ include './dbclasses.php'; ?>
 </header>
 
 <body>
-
-    <?php
-    try {
-        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-        $songsCatalog = new SongsDB($conn);
-        $songs = $songsCatalog->getAll();
-    } catch (Exception $e) {
-        die($e->getMessage());
-    }
-    ?>
-    <!-- <div>
-        <a href="./single_song_2.php?song_id=<?= $song['song_id'] ?>"><?= $song['title'] ?></a>
-    </div> -->
     <section>
-        <?php search(); ?>
+        <?php $songs = search();?>
 
-        <!-- <table>
+        <table>
             <thead>
                 <tr>
                     <th>Title</th>
@@ -71,7 +58,7 @@ include './dbclasses.php'; ?>
             <tfoot>
 
             </tfoot>
-        </table> -->
+        </table>
         <?= backButton() ?>
     </section>
     <footer>

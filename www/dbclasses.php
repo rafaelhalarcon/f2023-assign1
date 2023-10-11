@@ -63,12 +63,11 @@ function search()
                     echo "I am on title ";
                     if (isset($_GET['title']) && !empty($_GET['title'])) {
                         foreach ($songs as $song) {
-                            if ($song['title'] == $_GET['title']) {
-                                return $songsCollection->findSongsTitle($_GET['title']);
-                            } else "No song found with that search!";
+                            return $songsCollection->findSongsTitle($_GET['title']);
                         }
-                    }break;
-                case "artist_name":
+                    }
+                    break;
+                case "artist":
                     echo "I am on artist ";
                     if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
                         foreach ($songs as $song) {
@@ -76,7 +75,8 @@ function search()
                                 return $songsCollection->findSongArtist($_GET['artist_name']);
                             } else "No song found with that artist!";
                         }
-                    }break;
+                    }
+                    break;
                 case "genre_name":
                     echo "I am on genre ";
                     if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
@@ -85,19 +85,23 @@ function search()
                                 return $songsCollection->findSongGenre($_GET['genre_name']);
                             } else "No song found with that genre!";
                         }
-                    }break;
-                    case "date":
-                        echo "I am on date";
-                        if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
-                            foreach ($songs as $song) {
-                        //         if () {
+                    }
+                    break;
+                case "date":
+                    echo "I am on date";
+                    if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
+                        foreach ($songs as $song) {
+                            //         if () {
 
-                        //             return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
-                        //         }
-                        //     } else "No song found with that time period!";
-                        // }
+                            //             return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
+                            //         }
+                            //     } else "No song found with that time period!";
+                            // }
                         }
-                        }break;
+                    }
+                    break;
+                default:
+                    echo "you exited the switch case";
             }
         }
     }
@@ -154,7 +158,7 @@ class SongsDB extends stdClass
     FROM songs s
        JOIN artists a ON s.artist_id=a.artist_id
        JOIN genres g ON s.genre_id=g.genre_id
-       JOIN types t ON a.artist_type_id=t.type_id;";
+       JOIN types t ON a.artist_type_id=t.type_id";
 
     public function __construct($connection)
     {
@@ -164,15 +168,19 @@ class SongsDB extends stdClass
     public function getAll()
     {
         $sql = self::$baseSQL;
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql . ";", null);
 
         return $statement->fetchAll();
     }
 
     function findSongsTitle($search)
     {
-        $sql = self::$baseSQL . " WHERE s.title LIKE " . "'" . "%" . "?" . "% ;";
-        var_dump($sql);
+        $sql = self::$baseSQL . " WHERE s.title LIKE "  . "%?%;";
+        // $sql = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
+        // FROM songs s
+        //    JOIN artists a ON s.artist_id=a.artist_id
+        //    JOIN genres g ON s.genre_id=g.genre_id
+        //    JOIN types t ON a.artist_type_id=t.type_id WHERE a.artist_name LIKE %" . "?" . "%;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
         return $statement->fetchAll();
@@ -180,13 +188,7 @@ class SongsDB extends stdClass
 
     function findSongArtist($search)
     {
-        // $sql = self::$baseSQL . " WHERE a.artist_name =" . "?;";
-        $sql = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
-        FROM songs s
-           JOIN artists a ON s.artist_id=a.artist_id
-           JOIN genres g ON s.genre_id=g.genre_id
-           JOIN types t ON a.artist_type_id=t.type_id WHERE a.artist_name =?;";
-        var_dump($sql);
+        $sql = self::$baseSQL . " WHERE a.artist_name = " . "?;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
         return $statement->fetchAll();
@@ -195,17 +197,13 @@ class SongsDB extends stdClass
     function findSongGenre($search)
     {
         $sql = self::$baseSQL . " WHERE g.genre_name = " . "?;";
-        var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
-        var_dump($statement);
-
         return $statement->fetchAll();
     }
 
     function findSongDate($date1, $date2)
     {
         $sql = self::$baseSQL . " WHERE s.year BETWEEN" . "?" . "AND" . "?;";
-        var_dump($sql);
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($date1, $date2));
 
         return $statement->fetchAll();
