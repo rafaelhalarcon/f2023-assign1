@@ -90,14 +90,14 @@ function search()
                         echo "I am on date";
                         if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
                             foreach ($songs as $song) {
-                                if () {
+                        //         if () {
 
-                                    return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
-                                }
-                            } else "No song found with that time period!";
+                        //             return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
+                        //         }
+                        //     } else "No song found with that time period!";
+                        // }
                         }
-
-                    
+                        }
             }
         }
     }
