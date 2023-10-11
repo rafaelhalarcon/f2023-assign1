@@ -91,14 +91,10 @@ function search()
                     echo "I am on date";
                     if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
                         foreach ($songs as $song) {
-                            //         if () {
-
-                            //             return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
-                            //         }
-                            //     } else "No song found with that time period!";
-                            // }
+                            return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);
                         }
-                    }
+                    } else "No song found with that time period!";
+
                     break;
                 default:
                     echo "you exited the switch case";
@@ -175,16 +171,8 @@ class SongsDB extends stdClass
 
     function findSongsTitle($search)
     {
-       echo ($search);
-       $sql = self::$baseSQL . " WHERE s.title LIKE " . "?;";
-       $search = "%" . $search . "%";
-
-        // $sql = self::$baseSQL . " WHERE s.title REGEXP  " . "\".*?.*%\";";
-        // $sql = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
-        // FROM songs s
-        //    JOIN artists a ON s.artist_id=a.artist_id
-        //    JOIN genres g ON s.genre_id=g.genre_id
-        //    JOIN types t ON a.artist_type_id=t.type_id WHERE a.artist_name LIKE %" . "?" . "%;";
+        $sql = self::$baseSQL . " WHERE s.title LIKE " . "?;";
+        $search = "%" . $search . "%";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
 
         return $statement->fetchAll();
@@ -202,12 +190,13 @@ class SongsDB extends stdClass
     {
         $sql = self::$baseSQL . " WHERE g.genre_name = " . "?;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($search));
+
         return $statement->fetchAll();
     }
 
     function findSongDate($date1, $date2)
     {
-        $sql = self::$baseSQL . " WHERE s.year BETWEEN" . "?" . "AND" . "?;";
+        $sql = self::$baseSQL . " WHERE s.year BETWEEN " . "?" . "AND" . "?;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($date1, $date2));
 
         return $statement->fetchAll();
