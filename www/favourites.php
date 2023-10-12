@@ -21,7 +21,7 @@
     <title>Favourites</title>
 </head>
 <header>
-    <?= navBarHead('Favourites', '#', '#', '#', '#') ?>
+    <?= navBarHead('Favourites') ?>
 </header>
 <body>
     

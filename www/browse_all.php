@@ -22,7 +22,7 @@ include './dbclasses.php'; ?>
     <title>Song Detail</title>
 </head>
 <header>
-    <?= navBarHead('Music browser', '#', '#', '#', '#') ?>
+    <?= navBarHead('Music browser') ?>
 </header>
 
 <body>

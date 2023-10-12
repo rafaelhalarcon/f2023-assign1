@@ -1,6 +1,6 @@
 <?php
 
-function navBarHead($title, $link1, $link2, $link3, $link4)
+function navBarHead($title)
 {
     $link1 = 'index.php';
     $link2 = 'browse_all.php';

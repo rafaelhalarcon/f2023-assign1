@@ -34,7 +34,7 @@ try {
 </head>
 
 <header>
-    <?= navBarHead('Search', '#', '#', '#', '#') ?>
+    <?= navBarHead('Search') ?>
 </header>
 <body>
     <form action="./browse_search_results.php" method="GET" id="form">

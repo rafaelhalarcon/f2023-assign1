@@ -26,7 +26,7 @@ include './dbclasses.php'; ?>
 
 </head>
 <header>
-    <?= navBarHead('Song detail', '#', '#', '#', '#') ?>
+    <?= navBarHead('Song detail') ?>
 </header>
 
 <body>

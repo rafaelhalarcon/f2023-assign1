@@ -33,7 +33,7 @@ $favourites = $_SESSION['favourites'];
 </head>
 
 <header>
-    <?= navBarHead('Search Results', '#', '#', '#', '#') ?>
+    <?= navBarHead('Search Results') ?>
 </header>
 
 <body>
