@@ -54,7 +54,7 @@ if (isset($_POST['clearFavorites'])) {
 </header>
 
 <body>
-    <section>
+    <<<<<<< HEAD <section>
         <h2>Favourite Songs</h2>
         <table>
             <thead>
@@ -86,7 +86,7 @@ if (isset($_POST['clearFavorites'])) {
             <input type="submit" name="clearFavorites" value="Remove All">
         </form>
         <?= backButton() ?>
-    </section>
+        </section>
 
 </body>
 <footer>
