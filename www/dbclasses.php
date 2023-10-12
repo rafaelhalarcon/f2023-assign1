@@ -26,7 +26,7 @@ function truncateTitle25($string)
 
 function addToFav($song)
 {
-
+    
     if (isset($_POST['song_id'])) {
         $_SESSION['favourites'] = $song;
     }
@@ -207,4 +207,103 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
+
+    public function topGenre() {
+        $sql = "SELECT g.genre_name, COUNT(*) as song_count
+        FROM genres g
+        INNER JOIN songs s ON g.genre_id = s.genre_id
+        GROUP BY g.genre_name
+        ORDER BY song_count DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    
+    public function topArtist() {
+        $sql = "SELECT a.artist_name, COUNT(*) as song_count
+        FROM artists a
+        INNER JOIN songs s ON a.artist_id = s.artist_id
+        GROUP BY a.artist_name
+        ORDER BY song_count DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+
+    public function mostPopularSongs() {
+        $sql = "SELECT s.title, a.artist_name, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        ORDER BY s.popularity DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    
+    public function oneHitWonders() {
+        $sql = "SELECT s.title, a.artist_name, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        WHERE a.artist_id IN (
+            SELECT artist_id
+            FROM songs
+            GROUP BY artist_id
+            HAVING COUNT(*) = 1
+        )
+        ORDER BY s.popularity DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        
+        return $statement->fetchAll();
+    }
+    
+    public function longestAcoustic() {
+        $sql = "SELECT s.title, a.artist_name, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        WHERE s.acousticness > 40
+        ORDER BY s.duration DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    
+    public function atTheClub() {
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        WHERE (s.danceability * 1.6 + s.energy * 1.4) > 80
+        ORDER BY (s.danceability * 1.6 + s.energy * 1.4) DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    public function runningSongs() {
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        WHERE (s.bpm >= 120 AND s.bpm <= 125)
+        ORDER BY (s.energy * 1.3 + s.valence * 1.6) DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    public function studyingSongs() {
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
+        FROM songs s
+        INNER JOIN artists a ON s.artist_id = a.artist_id
+        WHERE (s.bpm >= 100 AND s.bpm <= 115) AND (s.speechiness >= 1 AND s.speechiness <= 20)
+        ORDER BY (s.acousticness * 0.8 + (100 - s.speechiness) + (100 - s.valence)) DESC
+        LIMIT 10;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+
+        return $statement->fetchAll();
+    }
+    
 }

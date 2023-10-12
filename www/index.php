@@ -1,6 +1,21 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
-include './dbclasses.php'; ?>
+include './dbclasses.php';
+try {
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
+    $topGenreSongs = $songsCatalog->topGenre();
+    $topArtistSongs = $songsCatalog->topArtist();
+    $mostPopular = $songsCatalog->mostPopularSongs();
+    $oneHit = $songsCatalog->oneHitWonders();
+    $longestAcoustic = $songsCatalog->longestAcoustic();
+    $atTheClub = $songsCatalog->atTheClub();
+    $runninSongs = $songsCatalog->runningSongs();
+    $studyingSongs = $songsCatalog->studyingSongs();
+} catch (Exception $e) {
+    die($e->getMessage());
+} ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,212 +44,77 @@ include './dbclasses.php'; ?>
 <body>
     <h2>Top Genre Based on the Number of Songs</h2>
     <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT g.genre_name, COUNT(*) as song_count
-            FROM genres g
-            INNER JOIN songs s ON g.genre_id = s.genre_id
-            GROUP BY g.genre_name
-            ORDER BY song_count DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            echo "<li>{$row['genre_name']} ({$row['song_count']} songs)</li>";
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    ?> <ul>
+        <?php
+        foreach ($topGenreSongs as $topGenreSong) {
+        ?><a href="./browse_search_results.php?searchField=genre_name&genre_name=<?= $topGenreSong['genre_name'] ?>">
+                <li style="text-transform:capitalize"> <?= $topGenreSong['genre_name'] . " (" . $topGenreSong['song_count'] . ")" ?></li>
+            </a>
+
+        <?php } ?>
+    </ul>
     <div></div>
 
     <h2>Top Artists Based on the Number of Songs</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT a.artist_name, COUNT(*) as song_count
-            FROM artists a
-            INNER JOIN songs s ON a.artist_id = s.artist_id
-            GROUP BY a.artist_name
-            ORDER BY song_count DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            echo "<li>{$row['artist_name']} ({$row['song_count']} songs)</li>";
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php
+        foreach ($topArtistSongs as $topArtistSong) {
+        ?><li><a href="./browse_search_results.php?searchField=artist&artist_name=<?= $topArtistSong['artist_name'] ?>">
+                    <?= $topArtistSong['artist_name'] . " (" . $topArtistSong['song_count'] . " songs)" ?></a></li>
+        <?php } ?>
+    </ul>
     <div></div>
-   
+
     <h2>Most Popular Songs Sorted by Popularity</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            ORDER BY s.popularity DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($mostPopular as $popSong) {
+        ?><li><a href="single_song.php?song_id=<?= $popSong['song_id'] ?>"><?= $popSong['title'] . " - " . $popSong['artist_name'] ?></a></li>
+        <?php }
+        ?></ul>
     <div></div>
 
     <h2>One-Hit Wonders</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            WHERE a.artist_id IN (
-                SELECT artist_id
-                FROM songs
-                GROUP BY artist_id
-                HAVING COUNT(*) = 1
-            )
-            ORDER BY s.popularity DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['artist_name'] . " - " . $row['title'] . "</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($oneHit as $oneHitSong) {
+        ?><li><a href="single_song.php?song_id=<?= $oneHitSong['song_id'] ?>"><?= $oneHitSong['title'] . " - " . $oneHitSong['artist_name'] ?> </a></li>
+        <?php } ?>
+    </ul>
     <div></div>
 
     <h2>Longest Acoustic Songs</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            WHERE s.acousticness > 40
-            ORDER BY s.duration DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($longestAcoustic as $longAcousticSong) {
+        ?><li><a href="single_song.php?song_id=<?= $longAcousticSong['song_id'] ?>"><?= $longAcousticSong['title'] . " - " . $longAcousticSong['artist_name'] ?> </a></li>
+
+        <?php } ?>
+    </ul>
     <div></div>
 
     <h2>At the Club</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            WHERE (s.danceability * 1.6 + s.energy * 1.4) > 80
-            ORDER BY (s.danceability * 1.6 + s.energy * 1.4) DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . "[BPM: " . $row['bpm'] ?> </a></li> <?php
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($atTheClub as $atClubSong) {
+        ?><li><a href="single_song.php?song_id=<?= $atClubSong['song_id'] ?>"><?= $atClubSong['title'] . " - " . $atClubSong['artist_name'] . " [BPM: " . $atClubSong['bpm'] . "]" ?> </a></li>
+
+        <?php } ?>
+    </ul>
     <div></div>
 
     <h2>Running Songs</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            WHERE (s.bpm >= 120 AND s.bpm <= 125)
-            ORDER BY (s.energy * 1.3 + s.valence * 1.6) DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . "[BPM: " . $row['bpm'] ?> </a></li> <?php
-        }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($runninSongs as $runningSong) {
+        ?><li><a href="single_song.php?song_id=<?= $runningSong['song_id'] ?>"><?= $runningSong['title'] . " - " . $runningSong['artist_name'] . " [BPM: " . $runningSong['bpm'] . "]" ?> </a></li>
+
+        <?php } ?>
+    </ul>
     <div></div>
 
     <h2>Studying Songs</h2>
-    <?php
-    try {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
-            FROM songs s
-            INNER JOIN artists a ON s.artist_id = a.artist_id
-            WHERE (s.bpm >= 100 AND s.bpm <= 115) AND (s.speechiness >= 1 AND s.speechiness <= 20)
-            ORDER BY (s.acousticness * 0.8 + (100 - s.speechiness) + (100 - s.valence)) DESC
-            LIMIT 10;";
-        $result = $pdo->query($sql);
-        echo "<ul>";
-        while ($row = $result->fetch()) {
-            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]"?> </a></li> 
-            <?php }
-        echo "</ul>";
-        $pdo = null;
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        echo "not connected";
-    }
-    ?>
+    <ul>
+        <?php foreach ($studyingSongs as $studyingSong) {
+        ?><li><a href="single_song.php?song_id=<?= $studyingSong['song_id'] ?>"><?= $studyingSong['title'] . " - " . $studyingSong['artist_name'] . " [BPM: " . $studyingSong['bpm'] . "]" ?> </a></li>
+        <?php } ?>
+    </ul>
+
 </body>
 <footer>
     <?= footer(); ?>
