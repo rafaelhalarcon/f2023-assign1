@@ -23,7 +23,7 @@ include './dbclasses.php'; ?>
     <title>Music browser</title>
 </head>
 <header>
-    <?= navBarHead('About us', '#', '#', '#', '#') ?>
+    <?= navBarHead('About us') ?>
 </header>
 
 <body>
