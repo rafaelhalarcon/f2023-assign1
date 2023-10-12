@@ -6,7 +6,7 @@ if (!isset($_SESSION['favourites'])) {
 $_SESSION['favourites'] = [];
 }
 $favourites = $_SESSION['favourites'];
-var_dump($_SESSION['favourites']);
+// var_dump($_SESSION['favourites']);
 
 
 ?>
@@ -33,7 +33,7 @@ var_dump($_SESSION['favourites']);
 </head>
 
 <header>
-    <?= navBarHead('Modern Music Player', '#', '#', '#', '#') ?>
+    <?= navBarHead('Search Results', '#', '#', '#', '#') ?>
 </header>
 
 <body>
