@@ -28,6 +28,31 @@ include './dbclasses.php'; ?>
 
 <body>
 
+    <h2>Technology Used</h2>
+    <li>"Insert process of converting sqlite to MySQL"</li>
+    <li>phpMyAdmin</li>
+    <li>Bootstrap</li>
+    </br>
+    </br>
+
+    <h2>Web Application Development 2</h2>
+    </br>
+    </br>
+
+    <h2>Group Members:</h2>
+    <a href='https://github.com/abaki016' target="_blank">
+        <h3>Arthur Bakir</h3>
+    </a>
+    <a href='https://github.com/rafaelhalarcon' target="_blank">
+        <h3>Rafael Hernandez Alarcon</h3>
+    </a>
+    </br>
+    </br>
+
+    <a href='https://github.com/rafaelhalarcon/f2023-assign1' target="_blank">
+        <h3>GitHub Repository</h3>
+    </a>
+
 </body>
 <footer>
     <?= footer(); ?>
