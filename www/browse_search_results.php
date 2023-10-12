@@ -1,9 +1,9 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
-include './dbclasses.php'; 
+include './dbclasses.php';
 session_start();
 if (!isset($_SESSION['favourites'])) {
-$_SESSION['favourites'] = [];
+    $_SESSION['favourites'] = [];
 }
 $favourites = $_SESSION['favourites'];
 // var_dump($_SESSION['favourites']);
@@ -38,7 +38,7 @@ $favourites = $_SESSION['favourites'];
 
 <body>
     <section>
-        <?php $songs = search();?>
+        <?php $songs = search(); ?>
 
         <table>
             <thead>
