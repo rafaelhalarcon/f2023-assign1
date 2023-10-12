@@ -20,12 +20,13 @@ function footer()
 { ?>
     <p>&copy; | <?php echo date("Y"); ?> | Arthur Bakir and Rafael Hernandez Alarcon | </p>
     <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
-    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://github.com/rafaelhalarcon/f2023-assign1" target="_blank"><i class="fab fa-github"></i></a>
     <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
 <?php }
 
-function backButton() {
-    ?> <button onclick="history.go(-1);"> Go Back </button> 
+function backButton()
+{
+?> <button onclick="history.go(-1);"> Go Back </button>
 <?php }
 
 ?>

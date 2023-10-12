@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 
@@ -10,9 +11,9 @@
     <meta name="author" content="Arthur Bakir and Rafael Hernandez Alarcon" />
     <meta name="keywords" content="Music BPM Energy danceability acoustic" />
     <meta name="description" content="WEBII assignment 1 music browser" />
-    <link href="./style/reset.css" rel="stylesheet"/>
-     <!-- Font Awesome -->
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="./style/reset.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
@@ -23,7 +24,12 @@
 <header>
     <?= navBarHead('Favourites') ?>
 </header>
+
 <body>
-    
+
 </body>
+<footer>
+    <?= footer(); ?>
+</footer>
+
 </html>
