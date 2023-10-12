@@ -76,7 +76,7 @@ include './dbclasses.php'; ?>
     }
     ?>
     <div></div>
-
+   
     <h2>Most Popular Songs Sorted by Popularity</h2>
     <?php
     try {
@@ -90,7 +90,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
+            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
         }
         echo "</ul>";
         $pdo = null;
@@ -106,7 +107,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name
+        $sql = "SELECT s.title, a.artist_name, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             WHERE a.artist_id IN (
@@ -120,7 +121,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['artist_name'] . " - " . $row['title'] . "</li>";
+            // echo "<li>" . $row['artist_name'] . " - " . $row['title'] . "</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
         }
         echo "</ul>";
         $pdo = null;
@@ -136,7 +138,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name
+        $sql = "SELECT s.title, a.artist_name, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             WHERE s.acousticness > 40
@@ -145,7 +147,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
+            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . "</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name']?> </a></li> <?php
         }
         echo "</ul>";
         $pdo = null;
@@ -161,7 +164,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             WHERE (s.danceability * 1.6 + s.energy * 1.4) > 80
@@ -170,7 +173,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . "[BPM: " . $row['bpm'] ?> </a></li> <?php
         }
         echo "</ul>";
         $pdo = null;
@@ -186,7 +190,7 @@ include './dbclasses.php'; ?>
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT s.title, a.artist_name, s.bpm
+        $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
             FROM songs s
             INNER JOIN artists a ON s.artist_id = a.artist_id
             WHERE (s.bpm >= 120 AND s.bpm <= 125)
@@ -195,7 +199,8 @@ include './dbclasses.php'; ?>
         $result = $pdo->query($sql);
         echo "<ul>";
         while ($row = $result->fetch()) {
-            echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . "[BPM: " . $row['bpm'] ?> </a></li> <?php
         }
         echo "</ul>";
         $pdo = null;
@@ -221,8 +226,8 @@ include './dbclasses.php'; ?>
         echo "<ul>";
         while ($row = $result->fetch()) {
             // echo "<li>" . $row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]</li>";
-            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]"?> </a></li> <?php 
-        }
+            ?><li><a href="single_song.php?song_id=<?=$row['song_id']?>"><?=$row['title'] . " - " . $row['artist_name'] . " [BPM: " . $row['bpm'] . "]"?> </a></li> 
+            <?php }
         echo "</ul>";
         $pdo = null;
     } catch (PDOException $e) {

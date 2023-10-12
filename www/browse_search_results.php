@@ -1,7 +1,15 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
-include './dbclasses.php'; ?>
+include './dbclasses.php'; 
+session_start();
+if (!isset($_SESSION['favourites'])) {
+$_SESSION['favourites'] = [];
+}
+$favourites = $_SESSION['favourites'];
+var_dump($_SESSION['favourites']);
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +58,7 @@ include './dbclasses.php'; ?>
                         <td><?= $song['artist_name'] ?></td>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
-                        <td><button>Fav</button></td>
+                        <td><input type="submit" method="POST" <?= addToFav($song['song_id']) ?>>Fav</input></td>
                         <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
                     </tr>
                 <?php } ?>

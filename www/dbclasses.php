@@ -7,18 +7,6 @@ function getAllSongs($connection)
     return $songs = $songsCollection->getAll();
 }
 
-function getAllArtist($connection)
-{
-}
-
-function getAllGenre($connection)
-{
-}
-
-function getAllTypes($connection)
-{
-}
-
 function outputSongs($array)
 {
 }
@@ -38,7 +26,7 @@ function truncateTitle25($string)
 
 function addToFav($song)
 {
-    session_start();
+
     if (isset($_POST['song_id'])) {
         $_SESSION['favourites'] = $song;
     }
@@ -102,8 +90,6 @@ function search()
         }
     }
 }
-
-
 
 class DatabaseHelper
 {
@@ -221,16 +207,4 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-}
-
-class ArtistDB
-{
-}
-
-class GenreDB
-{
-}
-
-class TypeDB
-{
 }
