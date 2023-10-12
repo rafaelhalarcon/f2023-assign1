@@ -1,5 +1,16 @@
 <?php include './configdb.inc.php';
-include './phpcomponents.inc.php'; ?>
+include './phpcomponents.inc.php'; 
+include './dbclasses.php';
+
+try {
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
+    $songs2 = $songsCatalog->getArtistAll();
+    $songs3 = $songsCatalog->getGenreAll();
+
+} catch (Exception $e) {
+    die($e->getMessage());
+}?>
 
 
 <!DOCTYPE html>
@@ -33,10 +44,23 @@ include './phpcomponents.inc.php'; ?>
             <input id="title" type="text" name="title">
             <input type="radio" name="searchField" value="artist" required>
             <label for="artist">Artist</label>
-            <input id="artist" type="select" name="artist_name">
+            <select id="artist" name="artist_name">
+                <option value="0">Select an artist</option>
+                <?php foreach ($songs2 as $song2) { ?>
+                    <option value="<?=$song2['artist_name'] ?>"><?=$song2['artist_name'] ?></option>
+               <?php } ?>
+
+            </select>
             <input type="radio" name="searchField" value="genre_name" required>
             <label for="genre_name">Genre</label>
-            <input id="genre" type="select" name="genre_name">
+            <select id="genre" name="genre_name">
+                <option value="0">Select a genre</option>
+                <?php foreach ($songs3 as $song3) { ?>
+                    <option value="<?=$song3['genre_name'] ?>"><?=$song3['genre_name'] ?></option>
+               <?php } ?>
+
+
+            </select>
             <fieldset>
                 <legend>Range of years</legend>
                 <input type="radio" name="searchField" value="date" required>
@@ -50,6 +74,7 @@ include './phpcomponents.inc.php'; ?>
 
 
     </form>
+    <?=backButton(); ?>
 </body>
 <footer>
     <?= footer(); ?>

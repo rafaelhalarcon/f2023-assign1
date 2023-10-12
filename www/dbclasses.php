@@ -169,6 +169,26 @@ class SongsDB extends stdClass
         return $statement->fetchAll();
     }
 
+    public function getArtistAll()
+    {
+        $sql = "SELECT DISTINCT s.artist_id, a.artist_name
+        FROM songs s
+        JOIN artists a ON s.artist_id=a.artist_id;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql . ";", null);
+
+        return $statement->fetchAll();
+    }
+
+    public function getGenreAll()
+    {
+        $sql = "SELECT DISTINCT s.genre_id, g.genre_name
+        FROM songs s
+        JOIN genres g ON s.genre_id=g.genre_id;";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql . ";", null);
+
+        return $statement->fetchAll();
+    }
+
     function findSongsTitle($search)
     {
         $sql = self::$baseSQL . " WHERE s.title LIKE " . "?;";
