@@ -6,7 +6,7 @@ function navBarHead($title)
     $link2 = 'browse_all.php';
     $link3 = 'search.php';
     $link4 = 'aboutUs.php'; ?>
-    <h2> | COMP3512 | Web Application Development II | Assignment 1</h2>
+    <h2><img src="../images/music.svg" width="100px"> | COMP3512 | Web Application Development II | Assignment 1</h2>
     <h2><?= $title ?></h2>
     <nav>
         <a href="<?= $link1 ?>">Home</a>
