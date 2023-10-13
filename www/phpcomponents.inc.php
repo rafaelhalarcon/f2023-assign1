@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style/general.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+
 <?php
 
 function navBarHead($title)
@@ -26,12 +37,14 @@ function navBarHead($title)
                     <a class="nav-link text-light" href="<?= $link4 ?>">About us</a>
                 </li>
             </ul>
+        </div>
     </nav>
-    </div>
-<?php }
+    <hr style="position: relative; top: -30px; left: 10px; border: none; height: .5rem;  background: antiquewhite; width:98%;" />
+    <?php }
 
 function footer()
 { ?>
+    <hr style="position: relative; top: -20px; left:10px; border: none; height: .5rem;  background: antiquewhite; width:98%;" />
     <div class="container p-4 pb-0 text-center">
         <p class="text-light">&copy; | <?php echo date("Y"); ?> | Arthur Bakir and Rafael Hernandez Alarcon | </p>
         <a class="btn btn-outline-light btn-floating m-1" href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
