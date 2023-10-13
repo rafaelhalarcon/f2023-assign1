@@ -7,22 +7,23 @@ function navBarHead($title)
     $link3 = './search.php';
     $link4 = './aboutUs.php'; ?>
 
-    <nav class="nav navbar-expand-lg navbar-light  bg-gradient fs-5 py-lg-3">
+    <nav class="nav text-light navbar-expand-lg  text-center fs-5 py-lg-3">
         <div class="container-fluid">
-            <h1 class="navbar-brand"><a href="./index.php"><img src="../images/music.svg" width="100px"></a> | COMP3512 | Web Application Development II | Assignment 1 | <h3><?= $title ?></h1></h3>
-            
+            <h1 class="navbar-brand"><a href="./index.php"><img src="../images/music.svg" width="100px"></a> &nbsp; COMP3512 | Web Application Development II | Assignment 1 <h3><?= $title ?></h1>
+            </h3>
+
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?=$link1 ?>">Home</a>
+                    <a class="nav-link text-light" href="<?= $link1 ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?=$link2 ?>">Browse</a>
+                    <a class="nav-link text-light" href="<?= $link2 ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?=$link3 ?>">Search</a>
+                    <a class="nav-link text-light" href="<?= $link3 ?>">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?=$link4 ?>">About us</a>
+                    <a class="nav-link text-light" href="<?= $link4 ?>">About us</a>
                 </li>
             </ul>
     </nav>
@@ -31,10 +32,12 @@ function navBarHead($title)
 
 function footer()
 { ?>
-    <p>&copy; | <?php echo date("Y"); ?> | Arthur Bakir and Rafael Hernandez Alarcon | </p>
-    <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
-    <a href="https://github.com/rafaelhalarcon/f2023-assign1" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <div class="container p-4 pb-0 text-center">
+        <p class="text-light">&copy; | <?php echo date("Y"); ?> | Arthur Bakir and Rafael Hernandez Alarcon | </p>
+        <a class="btn btn-outline-light btn-floating m-1" href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rafaelhalarcon/f2023-assign1" target="_blank"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
 <?php }
 
 function backButton()
