@@ -11,7 +11,7 @@ include './dbclasses.php'; ?>
     <meta name="author" content="Arthur Bakir and Rafael Hernandez Alarcon" />
     <meta name="keywords" content="Music BPM Energy danceability acoustic" />
     <meta name="description" content="WEBII assignment 1 music browser" />
-    <link href="./style/reset.css" rel="stylesheet"/>
+    <link href="./style/reset.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -19,7 +19,7 @@ include './dbclasses.php'; ?>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="./style/general.css" rel="stylesheet" />
-    <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Song Detail</title>
 </head>
 <header>
@@ -55,8 +55,12 @@ include './dbclasses.php'; ?>
                         <td><?= $song['artist_name'] ?></td>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
-                        <td><input type="submit" method="POST" <?= addToFav($song['song_id']) ?>>Fav</input></td>
-                        <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
+                        <td>
+                            <a href="./addToFavourites.php?song_id=<?=$song['song_id'] ?>">Add to fav</a>
+                        </td>
+                        <td>
+                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

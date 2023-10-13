@@ -39,7 +39,7 @@ try {
     <title>Music browser</title>
 </head>
 <header>
-    <?= navBarHead('Modern Music Player') ?>
+    <?= navBarHead('Modern Music Browser') ?>
 </header>
 
 <body>

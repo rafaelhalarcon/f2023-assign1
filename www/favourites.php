@@ -1,28 +1,29 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
 include './dbclasses.php';
-session_start();
+include './addToFavourites.php';
+// session_start();
 
-if (!isset($_SESSION['favourites'])) {
-    $_SESSION['favourites'] = [];
-}
+// if (!isset($_SESSION['favourites'])) {
+//     $_SESSION['favourites'] = [];
+// }
 
-$favorites = $_SESSION['favourites'];
+// $favorites = $_SESSION['favourites'];
 
-if (isset($_POST['removeFavorite']) && isset($_POST['removeFavorite'])) {
-    $song_id_to_remove = $_POST['removeFavorite'];
-    $index = array_search($song_id_to_remove, $favorites);
+// if (isset($_POST['removeFavorite']) && isset($_POST['removeFavorite'])) {
+//     $song_id_to_remove = $_POST['removeFavorite'];
+//     $index = array_search($song_id_to_remove, $favorites);
 
-    if ($index !== false) {
-        unset($favorites[$index]);
-        $favorites = array_values($favorites);
-        $_SESSION['favourites'] = $favorites;
-    }
-}
+//     if ($index !== false) {
+//         unset($favorites[$index]);
+//         $favorites = array_values($favorites);
+//         $_SESSION['favourites'] = $favorites;
+//     }
+// }
 
-if (isset($_POST['clearFavorites'])) {
-    $_SESSION['favourites'] = [];
-}
+// if (isset($_POST['clearFavorites'])) {
+//     $_SESSION['favourites'] = [];
+// }
 
 ?>
 
@@ -47,7 +48,7 @@ if (isset($_POST['clearFavorites'])) {
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="./style/general.css" rel="stylesheet" />
-    <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Favourites</title>
 </head>
 <header>
@@ -76,7 +77,9 @@ if (isset($_POST['clearFavorites'])) {
                         <td><?= $fav['artist_name'] ?></td>
                         <td><?= $fav['year'] ?></td>
                         <td><?= $fav['genre_name'] ?></td>
-                        <td><input type="submit" method="POST" <?= addToFav($fav['song_id']) ?>>Fav</input></td>
+                        <td>
+                            <a href="./addToFavourites.php?song_id=<?$fav['song_id'] ?>"></input></td>
+                        </form>
                         <td><a href="./single_song.php?song_id=<?= $fav['song_id'] ?>"><button>View</button></a></td>
                     </tr>
                 <?php }
