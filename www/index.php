@@ -34,7 +34,7 @@ try {
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
-    <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Music browser</title>
 </head>
 <header>
@@ -42,43 +42,56 @@ try {
 </header>
 
 <body>
-    <h2>Top Genre Based on the Number of Songs</h2>
-    <?php
-    ?> <ul>
-        <?php
-        foreach ($topGenreSongs as $topGenreSong) {
-        ?><a href="./browse_search_results.php?searchField=genre_name&genre_name=<?= $topGenreSong['genre_name'] ?>">
-                <li style="text-transform:capitalize"> <?= $topGenreSong['genre_name'] . " (" . $topGenreSong['song_count'] . ")" ?></li>
-            </a>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Top Genre Based on the Number of Songs</h2>
+                    <ul class="card-text">
+                        <?php
+                        foreach ($topGenreSongs as $topGenreSong) {
+                        ?><a href="./browse_search_results.php?searchField=genre_name&genre_name=<?= $topGenreSong['genre_name'] ?>">
+                                <li style="text-transform:capitalize"> <?= $topGenreSong['genre_name'] . " (" . $topGenreSong['song_count'] . ")" ?></li>
+                            </a>
 
-        <?php } ?>
-    </ul>
-    <div></div>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
 
-    <h2>Top Artists Based on the Number of Songs</h2>
-    <ul>
-        <?php
-        foreach ($topArtistSongs as $topArtistSong) {
-        ?><li><a href="./browse_search_results.php?searchField=artist&artist_name=<?= $topArtistSong['artist_name'] ?>">
-                    <?= $topArtistSong['artist_name'] . " (" . $topArtistSong['song_count'] . " songs)" ?></a></li>
-        <?php } ?>
-    </ul>
-    <div></div>
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Top Artists Based on the Number of Songs</h2>
+                    <ul>
+                        <?php
+                        foreach ($topArtistSongs as $topArtistSong) {
+                        ?><li><a href="./browse_search_results.php?searchField=artist&artist_name=<?= $topArtistSong['artist_name'] ?>">
+                                    <?= $topArtistSong['artist_name'] . " (" . $topArtistSong['song_count'] . " songs)" ?></a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
 
-    <h2>Most Popular Songs Sorted by Popularity</h2>
-    <ul>
-        <?php foreach ($mostPopular as $popSong) {
-        ?><li><a href="single_song.php?song_id=<?= $popSong['song_id'] ?>"><?= $popSong['title'] . " - " . $popSong['artist_name'] ?></a></li>
-        <?php }
-        ?></ul>
-    <div></div>
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Most Popular Songs Sorted by Popularity</h2>
+                    <ul class="card-text">
+                        <?php foreach ($mostPopular as $popSong) {
+                        ?><li><a href="single_song.php?song_id=<?= $popSong['song_id'] ?>"><?= $popSong['title'] . " - " . $popSong['artist_name'] ?></a></li>
+                        <?php }
+                        ?></ul>
+                </div>
+            </div>
 
-    <h2>One-Hit Wonders</h2>
-    <ul>
-        <?php foreach ($oneHit as $oneHitSong) {
-        ?><li><a href="single_song.php?song_id=<?= $oneHitSong['song_id'] ?>"><?= $oneHitSong['title'] . " - " . $oneHitSong['artist_name'] ?> </a></li>
-        <?php } ?>
-    </ul>
+
+            <h2>One-Hit Wonders</h2>
+            <ul>
+                <?php foreach ($oneHit as $oneHitSong) {
+                ?><li><a href="single_song.php?song_id=<?= $oneHitSong['song_id'] ?>"><?= $oneHitSong['title'] . " - " . $oneHitSong['artist_name'] ?> </a></li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
     <div></div>
 
     <h2>Longest Acoustic Songs</h2>
