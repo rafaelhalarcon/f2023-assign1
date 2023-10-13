@@ -6,14 +6,27 @@ function navBarHead($title)
     $link2 = 'browse_all.php';
     $link3 = 'search.php';
     $link4 = 'aboutUs.php'; ?>
-    <h2><img src="../images/music.svg" width="100px"> | COMP3512 | Web Application Development II | Assignment 1</h2>
-    <h2><?= $title ?></h2>
-    <nav>
-        <a href="<?= $link1 ?>">Home</a>
-        <a href="<?= $link2 ?>">Browse</a>
-        <a href="<?= $link3 ?>">Search</a>
-        <a href="<?= $link4 ?>">About us</a>
+
+    <nav class="nav navbar-expand-lg navbar-light  bg-gradient">
+        <div class="container-fluid">
+            <h1 class="navbar-brand"><img src="../images/music.svg" width="100px"> | COMP3512 | Web Application Development II | Assignment 1 | <?= $title ?></h1>
+            
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="<?= $link2 ?>">Browse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="<?= $link1 ?>">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="<?= $link3 ?>">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="<?= $link4 ?>">About us</a>
+                </li>
+            </ul>
     </nav>
+    </div>
 <?php }
 
 function footer()
