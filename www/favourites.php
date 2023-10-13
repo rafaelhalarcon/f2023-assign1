@@ -46,6 +46,7 @@ if (isset($_POST['clearFavorites'])) {
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+    <link href="./style/general.css" rel="stylesheet" />
     <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Favourites</title>
 </head>

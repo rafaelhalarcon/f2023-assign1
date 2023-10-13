@@ -2,27 +2,27 @@
 
 function navBarHead($title)
 {
-    $link1 = 'index.php';
-    $link2 = 'browse_all.php';
-    $link3 = 'search.php';
-    $link4 = 'aboutUs.php'; ?>
+    $link1 = './index.php';
+    $link2 = './browse_all.php';
+    $link3 = './search.php';
+    $link4 = './aboutUs.php'; ?>
 
-    <nav class="nav navbar-expand-lg navbar-light  bg-gradient">
+    <nav class="nav navbar-expand-lg navbar-light  bg-gradient fs-5 py-lg-3">
         <div class="container-fluid">
-            <h1 class="navbar-brand"><img src="../images/music.svg" width="100px"> | COMP3512 | Web Application Development II | Assignment 1 | <?= $title ?></h1>
+            <h1 class="navbar-brand"><a href="./index.php"><img src="../images/music.svg" width="100px"></a> | COMP3512 | Web Application Development II | Assignment 1 | <h3><?= $title ?></h1></h3>
             
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link2 ?>">Browse</a>
+                    <a class="nav-link text-light" href="<?=$link1 ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link1 ?>">Home</a>
+                    <a class="nav-link text-light" href="<?=$link2 ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link3 ?>">Search</a>
+                    <a class="nav-link text-light" href="<?=$link3 ?>">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link4 ?>">About us</a>
+                    <a class="nav-link text-light" href="<?=$link4 ?>">About us</a>
                 </li>
             </ul>
     </nav>
