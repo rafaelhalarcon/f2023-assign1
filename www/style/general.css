@@ -5,3 +5,8 @@ body {
 .card {
     margin: 3%;
 }
+
+.mx-auto {
+    width: 200px;
+}
+
