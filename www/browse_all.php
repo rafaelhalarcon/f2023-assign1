@@ -56,10 +56,10 @@ try {
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
                         <td>
-                            <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button>+ Fav</button></a>
+                            <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">+ Fav</button></a>
                         </td>
                         <td>
-                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
+                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -68,7 +68,10 @@ try {
 
             </tfoot>
         </table>
-        <?= backButton() ?>
+        <div class="mx-auto my-5" >
+
+            <?= backButton() ?>
+        </div>
     </section>
     <footer>
         <?= footer(); ?>

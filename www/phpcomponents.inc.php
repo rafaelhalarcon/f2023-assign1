@@ -59,7 +59,7 @@ function footer()
 
 function backButton()
 {
-?> <button class="btn btn-primary" onclick="history.go(-1);"> Go Back </button>
+?> <button class="btn btn-primary border m-1" onclick="history.go(-1);"> Go Back </button>
 <?php }
 
 ?>

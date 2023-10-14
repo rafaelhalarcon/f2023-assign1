@@ -81,10 +81,11 @@ if (isset($_SESSION['fav'])) {
                 ?>
             </tbody>
         </table>
-        <form method="post">
-            <input type="submit" name="clearFavorites" value="Remove All">
-        </form>
-        <?= backButton() ?>
+        <div class="mx-auto my-5" style=" width:400px">
+            <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button>
+
+            <?= backButton() ?>
+        </div>
     </section>
 
 </body>

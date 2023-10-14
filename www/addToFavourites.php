@@ -19,7 +19,7 @@ $fav[] = $_GET['song_id'];
 
 $_SESSION['fav'] = $fav;
 
-header ("location: " . $_SERVER['HTTP_REFERER']);
+header ("location: " . "./favourites.php");
 exit;
 ?>
 
