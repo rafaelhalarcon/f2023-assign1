@@ -45,7 +45,7 @@ try {
 
     <div class="container-fluid">
         <div class="col px-md-5 g-5">
-            <div class="card g-5">
+            <div class="card g-5 bg-light bg-gradient">
                 <form action="./browse_search_results.php" method="GET" id="form">
                     <div class="form-group p-5">
                         <div class="form-outline">
@@ -93,7 +93,7 @@ try {
                     <div class="mx-auto" style=" width:400px">
                         <div class="p-5 ">
 
-                            <input class="btn btn-primary" type="submit" value="Submit" form_id="form"></input>
+                            <button class="btn btn-primary border m-1" type="submit" value="Submit" form_id="form">Submit</button>
                             <?= backButton(); ?>
                         </div>
 

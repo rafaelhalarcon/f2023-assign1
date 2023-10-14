@@ -68,10 +68,10 @@ if (isset($_SESSION['fav'])) {
                             <td><?= $song['year'] ?></td>
                             <td><?= $song['genre_name'] ?></td>
                             <td>
-                                <a href="./deleteFromFavourites.php?song_id=<?= $song['song_id'] ?>"><button>Remove</button></a>
+                                <a href="./deleteFromFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">Remove</button></a>
                             </td>
                             <td>
-                                <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
+                                <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
                             </td>
                         </tr>
                 <?php
