@@ -1,33 +1,21 @@
-<?php include './configdb.inc.php';
+<?php session_start();
+ob_start();
+include './configdb.inc.php';
 include './phpcomponents.inc.php';
 include './dbclasses.php';
-include './addToFavourites.php';
-// session_start();
 
-// if (!isset($_SESSION['favourites'])) {
-//     $_SESSION['favourites'] = [];
-// }
+try {
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
+    $songs = $songsCatalog->getAll();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
 
-// $favorites = $_SESSION['favourites'];
-
-// if (isset($_POST['removeFavorite']) && isset($_POST['removeFavorite'])) {
-//     $song_id_to_remove = $_POST['removeFavorite'];
-//     $index = array_search($song_id_to_remove, $favorites);
-
-//     if ($index !== false) {
-//         unset($favorites[$index]);
-//         $favorites = array_values($favorites);
-//         $_SESSION['favourites'] = $favorites;
-//     }
-// }
-
-// if (isset($_POST['clearFavorites'])) {
-//     $_SESSION['favourites'] = [];
-// }
-
+if (isset($_SESSION['fav'])) {
+    $favourites = $_SESSION['fav'];
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,24 +53,27 @@ include './addToFavourites.php';
                     <th>Artist</th>
                     <th>Year</th>
                     <th>Genre</th>
-                    <th>Detail</th>
                     <th>Remove</th>
+                    <th>Detail</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($favorites as $fav) { ?>
-                    <tr>
-                        <td><?= truncateTitle25($fav['title']) ?></td>
-                        <td><?= $fav['artist_name'] ?></td>
-                        <td><?= $fav['year'] ?></td>
-                        <td><?= $fav['genre_name'] ?></td>
-                        <td>
-                            <a href="./addToFavourites.php?song_id=<?$fav['song_id'] ?>"></input></td>
-                        </form>
-                        <td><a href="./single_song.php?song_id=<?= $fav['song_id'] ?>"><button>View</button></a></td>
-                    </tr>
-                <?php }
+                foreach ($favourites as $fav)
+                    foreach ($songs as $song) {
+                        if ($fav == $song['song_id']) {?>
+                        <tr>
+                            <td><?= truncateTitle25($song['title']) ?></td>
+                            <td><?= $song['artist_name'] ?></td>
+                            <td><?= $song['year'] ?></td>
+                            <td><?= $song['genre_name'] ?></td>
+                            <td></td>
+                            <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
+                        </tr>
+                <?php
+                        }
+                    }
+
                 ?>
             </tbody>
         </table>
