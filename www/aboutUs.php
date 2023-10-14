@@ -20,7 +20,7 @@ include './dbclasses.php'; ?>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="./style/general.css" rel="stylesheet" />
-    <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Music browser</title>
 </head>
 <header>
@@ -29,31 +29,52 @@ include './dbclasses.php'; ?>
 
 <body>
 
-    <h2>Technology Used</h2>
-    <li>"Insert process of converting sqlite to MySQL"</li>
-    <li>phpMyAdmin</li>
-    <li>Bootstrap</li>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="center">Technology Used</h2>
+            <ul class="card-text">
+                <li>"Insert process of converting sqlite to MySQL"</li>
+                <li>phpMyAdmin</li>
+                <li>Bootstrap</li>
+            </ul>
+        </div>
+    </div>
     </br>
     </br>
 
-    <h2>Web Application Development 2</h2>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="center">Web Application Development 2</h2>
+        </div>
+    </div>
     </br>
     </br>
 
-    <h2>Group Members:</h2>
-    <a href='https://github.com/abaki016' target="_blank">
-        <h3>Arthur Bakir</h3>
-    </a>
-    <a href='https://github.com/rafaelhalarcon' target="_blank">
-        <h3>Rafael Hernandez Alarcon</h3>
-    </a>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="center">Group Members</h2>
+            <ul class="card-text">
+                <a href='https://github.com/abaki016' target="_blank">
+                    <h3 class="center">Arthur Bakir</h3>
+                </a>
+                <a href='https://github.com/rafaelhalarcon' target="_blank">
+                    <h3 class="center">Rafael Hernandez Alarcon</h3>
+                </a>
+            </ul>
+        </div>
+    </div>
     </br>
     </br>
 
-    <a href='https://github.com/rafaelhalarcon/f2023-assign1' target="_blank">
-        <h3>GitHub Repository</h3>
-    </a>
-
+    <div class="card">
+        <div class="card-body">
+            <a href='https://github.com/rafaelhalarcon/f2023-assign1' target="_blank">
+                <h2 class="center">GitHub Repository</h2>
+            </a>
+        </div>
+    </div>
+    </br>
+    </br>
 </body>
 <footer>
     <?= footer(); ?>
