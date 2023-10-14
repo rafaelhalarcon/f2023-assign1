@@ -47,7 +47,7 @@ try {
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Top Genre </h3>
+                    <h3 class="card-header">Top Genre </h3>
                     <ul class="card-text">
                         <?php
                         foreach ($topGenreSongs as $topGenreSong) {
@@ -63,7 +63,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">Top Artists </h3>
+                    <h3 class="card-header">Top Artists </h3>
                     <ul class="card-text">
                         <?php foreach ($topArtistSongs as $topArtistSong) {
                         ?><a href="./browse_search_results.php?searchField=artist&artist_name=<?= $topArtistSong['artist_name'] ?>">
@@ -78,7 +78,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">Most Popular Songs </h3>
+                    <h3 class="card-header">Most Popular Songs </h3>
                     <ul class="card-text">
                         <?php foreach ($mostPopular as $popSong) {
                         ?><li><a href="single_song.php?song_id=<?= $popSong['song_id'] ?>"><?= truncateTitle25($popSong['title']) . " - " . $popSong['artist_name'] ?></a></li>
@@ -91,7 +91,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">One-Hit Wonders</h3>
+                    <h3 class="card-header">One-Hit Wonders</h3>
                     <ul class="card-text">
                         <?php foreach ($oneHit as $oneHitSong) {
                         ?><li><a href="single_song.php?song_id=<?= $oneHitSong['song_id'] ?>"><?= truncateTitle25($oneHitSong['title']) . " - " . $oneHitSong['artist_name'] ?> </a></li>
@@ -106,7 +106,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">Longest Acoustic Songs</h3>
+                    <h3 class="card-header">Longest Acoustic Songs</h3>
                     <ul class="card-text">
                         <?php foreach ($longestAcoustic as $longAcousticSong) {
                         ?><li><a href="single_song.php?song_id=<?= $longAcousticSong['song_id'] ?>"><?= truncateTitle25($longAcousticSong['title']) . " - " . $longAcousticSong['artist_name'] ?> </a></li>
@@ -120,7 +120,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">At the Club</h3>
+                    <h3 class="card-header">At the Club</h3>
                     <ul class="card-text">
                         <?php foreach ($atTheClub as $atClubSong) {
                         ?><li><a href="single_song.php?song_id=<?= $atClubSong['song_id'] ?>"><?= truncateTitle25($atClubSong['title']) . " - " . $atClubSong['artist_name'] . " [BPM: " . $atClubSong['bpm'] . "]" ?> </a></li>
@@ -134,7 +134,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">Running Songs</h3>
+                    <h3 class="card-header">Running Songs</h3>
                     <ul class="card-text">
                         <?php foreach ($runninSongs as $runningSong) {
                         ?><li><a href="single_song.php?song_id=<?= $runningSong['song_id'] ?>"><?= truncateTitle25($runningSong['title']) . " - " . $runningSong['artist_name'] . " [BPM: " . $runningSong['bpm'] . "]" ?> </a></li>
@@ -148,7 +148,7 @@ try {
         <div class="col-sm-6">
             <div class="card" >
                 <div class="card-body">
-                    <h3 class="card-title">Studying Songs</h3>
+                    <h3 class="card-header">Studying Songs</h3>
                     <ul class="card-text">
                         <?php foreach ($studyingSongs as $studyingSong) {
                         ?><li><a href="single_song.php?song_id=<?= $studyingSong['song_id'] ?>"><?= truncateTitle25($studyingSong['title']) . " - " . $studyingSong['artist_name'] . " [BPM: " . $studyingSong['bpm'] . "]" ?> </a></li>

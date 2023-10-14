@@ -93,7 +93,7 @@ if (isset($_POST['clearFavorites'])) {
             </table>
 
         </div>
-        <div class="mx-auto my-5" style=" width:400px">
+        <div class="mx-auto my-5" >
             <!-- <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button> -->
             <?= backButton() ?>
         </div>
