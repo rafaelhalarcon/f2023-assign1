@@ -18,6 +18,7 @@ include './dbclasses.php';
 // } catch (Exception $e) {
 //     die($e->getMessage());
 // } 
+<<<<<<< HEAD
 // I HAVE NO IDEA WHY THIS IS DIFFERENT YET STILL WORKING BUT YAHOO :)
 try {
     // Create a connection to the SQLite database
@@ -28,6 +29,15 @@ try {
     $songsCatalog = new SongsDB($pdo);
 
     // Fetch data using your database class methods
+=======
+// I TRIED TO CHANGE SOME STUFF BUT IT IS STILL NOT WORKING :(
+try {
+    $pdo = new PDO('sqlite:./db/music.db');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = DatabaseHelper::connect(DBCONNSTRING);
+    // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
+>>>>>>> 19e79730f757ebb879112ad675005d114bd21a1b
     $topGenreSongs = $songsCatalog->topGenre();
     $topArtistSongs = $songsCatalog->topArtist();
     $mostPopular = $songsCatalog->mostPopularSongs();
