@@ -2,7 +2,8 @@
 include './phpcomponents.inc.php';
 include './dbclasses.php';
 try {
-    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $conn = DatabaseHelper::connect(DBCONSTRING);
+    // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     $songsCatalog = new SongsDB($conn);
     $topGenreSongs = $songsCatalog->topGenre();
     $topArtistSongs = $songsCatalog->topArtist();

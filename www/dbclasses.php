@@ -1,18 +1,11 @@
 <?php
 function getAllSongs($connection)
 {
-    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $conn = DatabaseHelper::connect(DBCONSTRING);
+    // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
     $songsCollection = new SongsDB($conn);
     return $songs = $songsCollection->getAll();
-}
-
-function outputSongs($array)
-{
-}
-
-function outputSingleSong()
-{
 }
 
 function truncateTitle25($string)
@@ -26,7 +19,6 @@ function truncateTitle25($string)
 
 function addToFav($song)
 {
-    
     if (isset($_POST['song_id'])) {
         $_SESSION['favourites'] = $song;
     }
@@ -35,7 +27,8 @@ function addToFav($song)
 function search()
 {
     try {
-        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+        $conn = DatabaseHelper::connect(DBCONSTRING);
+        // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
         $songsCatalog = new SongsDB($conn);
         $songs = $songsCatalog->getAll();
     } catch (Exception $e) {
@@ -91,20 +84,28 @@ function search()
     }
 }
 
-class DatabaseHelper
+class DatabaseHelper extends stdClass
 {
-
     /* Returns a connection object to a database */
-    public static function createConnection($values = array())
-    {
-        $connString = $values[0];
-        $user = $values[1];
-        $password = $values[2];
-        $pdo = new PDO($connString, $user, $password);
+    public static function connect($string) {
+
+        $pdo = new PDO($string);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $pdo;
     }
+
+    // public static function createConnection($values = array())
+    // {
+
+        // $connString = $values[0];
+        // $user = $values[1];
+        // $password = $values[2];
+        // $pdo = new PDO($connString, $user, $password);
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        // return $pdo;
+    // }
     /*Runs the specified SQLquery using the passed connection and the passed
     passed array of parameter (null if none) */
 
