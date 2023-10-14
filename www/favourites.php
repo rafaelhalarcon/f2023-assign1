@@ -19,6 +19,12 @@ if (isset($_SESSION['fav'])) {
 if (isset($_POST['clearFavorites'])) {
     $_SESSION['fav'] = [];
 }
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 300)) {
+    session_unset();
+    session_destroy();
+}
+$_SESSION['LAST_ACTIVITY'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +54,8 @@ if (isset($_POST['clearFavorites'])) {
 </header>
 
 <body>
-    <form method="post" >
-        <button class="btn btn-primary border m-1 float-end" type="submit" name="clearFavorites" value="Remove All">Remove all</button>
+    <form method="post" action="clearFavourites.php">
+        <button class="btn btn-primary border m-1" type="submit" name="clearFavourites" value="Remove All">Remove all</button>
     </form><br>
     <section>
         <div class="card g-3 bg-light bg-gradient">
@@ -93,7 +99,7 @@ if (isset($_POST['clearFavorites'])) {
             </table>
 
         </div>
-        <div class="mx-auto my-5" >
+        <div class="mx-auto my-5">
             <!-- <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button> -->
             <?= backButton() ?>
         </div>

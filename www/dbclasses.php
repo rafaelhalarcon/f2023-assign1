@@ -26,7 +26,7 @@ function truncateTitle25($string)
 
 function addToFav($song)
 {
-    
+
     if (isset($_POST['song_id'])) {
         $_SESSION['favourites'] = $song;
     }
@@ -208,7 +208,8 @@ class SongsDB extends stdClass
         return $statement->fetchAll();
     }
 
-    public function topGenre() {
+    public function topGenre()
+    {
         $sql = "SELECT g.genre_name, COUNT(*) as song_count
         FROM genres g
         INNER JOIN songs s ON g.genre_id = s.genre_id
@@ -219,8 +220,9 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    
-    public function topArtist() {
+
+    public function topArtist()
+    {
         $sql = "SELECT a.artist_name, COUNT(*) as song_count
         FROM artists a
         INNER JOIN songs s ON a.artist_id = s.artist_id
@@ -232,7 +234,8 @@ class SongsDB extends stdClass
         return $statement->fetchAll();
     }
 
-    public function mostPopularSongs() {
+    public function mostPopularSongs()
+    {
         $sql = "SELECT s.title, a.artist_name, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -242,8 +245,9 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    
-    public function oneHitWonders() {
+
+    public function oneHitWonders()
+    {
         $sql = "SELECT s.title, a.artist_name, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -256,11 +260,12 @@ class SongsDB extends stdClass
         ORDER BY s.popularity DESC
         LIMIT 10;";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
-        
+
         return $statement->fetchAll();
     }
-    
-    public function longestAcoustic() {
+
+    public function longestAcoustic()
+    {
         $sql = "SELECT s.title, a.artist_name, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -271,8 +276,9 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    
-    public function atTheClub() {
+
+    public function atTheClub()
+    {
         $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -283,7 +289,8 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    public function runningSongs() {
+    public function runningSongs()
+    {
         $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -294,7 +301,8 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    public function studyingSongs() {
+    public function studyingSongs()
+    {
         $sql = "SELECT s.title, a.artist_name, s.bpm, s.song_id
         FROM songs s
         INNER JOIN artists a ON s.artist_id = a.artist_id
@@ -305,5 +313,4 @@ class SongsDB extends stdClass
 
         return $statement->fetchAll();
     }
-    
 }

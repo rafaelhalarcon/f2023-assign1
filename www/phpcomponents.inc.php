@@ -15,13 +15,13 @@ function navBarHead($title)
 {
     $link1 = './index.php';
     $link2 = './browse_all.php';
-    $link3 = './favourites.php'; 
+    $link3 = './favourites.php';
     $link4 = './search.php';
     $link5 = './aboutUs.php'; ?>
 
     <nav class="nav text-light navbar-expand-lg  text-center fs-5 py-lg-3">
         <div class="container-fluid">
-            <h1 class="navbar-brand"><a href="./index.php"><img src="../images/music.png" width="100px"></a> &nbsp; COMP3512 | Web Application Development II | Assignment 1 <h3><?= $title ?></h1>
+            <h1 class="navbar-brand"><a href="./index.php"><img src="./images/music.png" width="100px"></a> &nbsp; COMP3512 | Web Application Development II | Assignment 1 <h3><?= $title ?></h1>
             </h3>
 
             <ul class="nav">
@@ -44,7 +44,7 @@ function navBarHead($title)
         </div>
     </nav>
     <hr style="position: relative; top: -30px; left: 10px; border: none; height: .5rem;  background: antiquewhite; width:98%;" />
-    <?php }
+<?php }
 
 function footer()
 { ?>
