@@ -30,7 +30,7 @@ include './dbclasses.php';
 
 <body>
     <section>
-        <?php $songs = search(); ?>
+        <?php $songs = search();?>
 
         <table>
             <thead>
@@ -51,10 +51,10 @@ include './dbclasses.php';
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
                         <td>
-                            <a href="./addToFavourites.php?song_id=<?$song['song_id'] ?>">Add to fav</input></td></a>
+                            <a href="./addToFavourites.php?song_id=<?=$song['song_id'] ?>"><button>+ Fav</button></a>
                         </td>
                         <td>
-                            <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
+                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
                         </td>
                     </tr>
                 <?php } ?>

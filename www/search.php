@@ -40,6 +40,7 @@ try {
 <body>
     <form action="./browse_search_results.php" method="GET" id="form">
         <fieldset>
+            <!-- <input type="hidden" name="song_id" value="<?=$song2['song_id']?>"> -->
             <input type="radio" name="searchField" value="title" required>
             <label for="title">Title</label>
             <input id="title" type="text" name="title">

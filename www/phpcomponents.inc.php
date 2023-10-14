@@ -15,8 +15,9 @@ function navBarHead($title)
 {
     $link1 = './index.php';
     $link2 = './browse_all.php';
-    $link3 = './search.php';
-    $link4 = './aboutUs.php'; ?>
+    $link3 = './favourites.php'; 
+    $link4 = './search.php';
+    $link5 = './aboutUs.php'; ?>
 
     <nav class="nav text-light navbar-expand-lg  text-center fs-5 py-lg-3">
         <div class="container-fluid">
@@ -31,10 +32,13 @@ function navBarHead($title)
                     <a class="nav-link text-light" href="<?= $link2 ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link3 ?>">Search</a>
+                    <a class="nav-link text-light" href="<?= $link3 ?>">Favourites</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="<?= $link4 ?>">About us</a>
+                    <a class="nav-link text-light" href="<?= $link4 ?>">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="<?= $link5 ?>">About us</a>
                 </li>
             </ul>
         </div>

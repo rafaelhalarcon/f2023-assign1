@@ -61,14 +61,18 @@ if (isset($_SESSION['fav'])) {
                 <?php
                 foreach ($favourites as $fav)
                     foreach ($songs as $song) {
-                        if ($fav == $song['song_id']) {?>
+                        if ($fav == $song['song_id']) { ?>
                         <tr>
                             <td><?= truncateTitle25($song['title']) ?></td>
                             <td><?= $song['artist_name'] ?></td>
                             <td><?= $song['year'] ?></td>
                             <td><?= $song['genre_name'] ?></td>
-                            <td></td>
-                            <td><a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a></td>
+                            <td>
+                                <a href="./deleteFromFavourites.php?song_id=<?= $song['song_id'] ?>"><button>Remove</button></a>
+                            </td>
+                            <td>
+                                <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
+                            </td>
                         </tr>
                 <?php
                         }

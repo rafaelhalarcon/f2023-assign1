@@ -1,6 +1,15 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
-include './dbclasses.php'; ?>
+include './dbclasses.php';
+
+try {
+    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
+    $songs = $songsCatalog->getAll();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +36,6 @@ include './dbclasses.php'; ?>
 </header>
 
 <body>
-    <?php
-    try {
-        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-        $songsCatalog = new SongsDB($conn);
-        $songs = $songsCatalog->getAll();
-    } catch (Exception $e) {
-        die($e->getMessage());
-    }
-    ?>
     <section>
         <table>
             <thead>
@@ -56,7 +56,7 @@ include './dbclasses.php'; ?>
                         <td><?= $song['year'] ?></td>
                         <td><?= $song['genre_name'] ?></td>
                         <td>
-                            <a href="./addToFavourites.php?song_id=<?=$song['song_id'] ?>">Add to fav</a>
+                            <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button>+ Fav</button></a>
                         </td>
                         <td>
                             <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button>View</button></a>
