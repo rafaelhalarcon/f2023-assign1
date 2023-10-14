@@ -10,3 +10,8 @@ body {
     width: 200px;
 }
 
+.center {
+    /* padding: 70px 0; */
+    text-align: center;
+}
+
