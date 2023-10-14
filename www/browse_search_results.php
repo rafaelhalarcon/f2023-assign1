@@ -20,7 +20,7 @@ include './dbclasses.php';
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
     <link href="./style/general.css" rel="stylesheet" />
-    <link rel="icon"  href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" sizes="32x32">
     <title>Song Detail</title>
 </head>
 
@@ -30,40 +30,41 @@ include './dbclasses.php';
 
 <body>
     <section>
-        <?php $songs = search();?>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Artist</th>
-                    <th>Year</th>
-                    <th>Genre</th>
-                    <th>Fav</th>
-                    <th>Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($songs as $song) { ?>
+        <?php $songs = search(); ?>
+        <div class="card g-3 bg-light bg-gradient">
+            <table class="table table-primary table-striped">
+                <thead>
                     <tr>
-                        <td><?= truncateTitle25($song['title']) ?></td>
-                        <td><?= $song['artist_name'] ?></td>
-                        <td><?= $song['year'] ?></td>
-                        <td><?= $song['genre_name'] ?></td>
-                        <td>
-                            <a href="./addToFavourites.php?song_id=<?=$song['song_id'] ?>"><button class="btn btn-primary border m-1">+ Fav</button></a>
-                        </td>
-                        <td>
-                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
-                        </td>
+                        <th scope="col" class="text-center">Title</th>
+                        <th scope="col" class="text-center">Artist</th>
+                        <th scope="col" class="text-center">Year</th>
+                        <th scope="col" class="text-center">Genre</th>
+                        <th scope="col" class="text-center">Fav</th>
+                        <th scope="col" class="text-center">Detail</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-            <tfoot>
+                </thead>
+                <tbody>
+                    <?php foreach ($songs as $song) { ?>
+                        <tr scoper="row">
+                            <td class="text-center"><?= truncateTitle25($song['title']) ?></td>
+                            <td class="text-center"><?= $song['artist_name'] ?></td>
+                            <td class="text-center"><?= $song['year'] ?></td>
+                            <td class="text-center"><?= $song['genre_name'] ?></td>
+                            <td class="text-center">
+                                <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">+ Fav</button></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                <tfoot>
 
-            </tfoot>
-        </table>
-        <div class="mx-auto my-5" >
+                </tfoot>
+            </table>
+        </div>
+        <div class="mx-auto my-5">
 
             <?= backButton() ?>
         </div>

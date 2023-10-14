@@ -48,7 +48,7 @@ function search()
         if (!empty($_GET['searchField'])) {
             switch ($_GET['searchField']) {
                 case "title":
-                    echo "I am on title ";
+                    // echo "I am on title ";
                     if (isset($_GET['title']) && !empty($_GET['title'])) {
                         foreach ($songs as $song) {
                             return $songsCollection->findSongsTitle($_GET['title']);
@@ -56,7 +56,7 @@ function search()
                     }
                     break;
                 case "artist":
-                    echo "I am on artist ";
+                    // echo "I am on artist ";
                     if (isset($_GET['artist_name']) && !empty($_GET['artist_name'])) {
                         foreach ($songs as $song) {
                             if ($song['artist_name'] == $_GET['artist_name']) {
@@ -66,7 +66,7 @@ function search()
                     }
                     break;
                 case "genre_name":
-                    echo "I am on genre ";
+                    // echo "I am on genre ";
                     if (isset($_GET['genre_name']) && !empty($_GET['genre_name'])) {
                         foreach ($songs as $song) {
                             if ($song['genre_name'] == $_GET['genre_name']) {
@@ -76,7 +76,7 @@ function search()
                     }
                     break;
                 case "date":
-                    echo "I am on date";
+                    // echo "I am on date";
                     if ((isset($_GET['date1']) && isset($_GET['date2'])) && (!empty($_GET['date1']) && !empty($_GET['date2']))) {
                         foreach ($songs as $song) {
                             return $songsCollection->findSongDate($_GET['date1'], $_GET['date2']);

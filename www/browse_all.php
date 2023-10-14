@@ -37,37 +37,40 @@ try {
 
 <body>
     <section>
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Artist</th>
-                    <th>Year</th>
-                    <th>Genre</th>
-                    <th>Fav</th>
-                    <th>Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($songs as $song) { ?>
-                    <tr>
-                        <td><?= truncateTitle25($song['title']) ?></td>
-                        <td><?= $song['artist_name'] ?></td>
-                        <td><?= $song['year'] ?></td>
-                        <td><?= $song['genre_name'] ?></td>
-                        <td>
-                            <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">+ Fav</button></a>
-                        </td>
-                        <td>
-                            <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-            <tfoot>
+        <div class="card g-3 bg-light bg-gradient">
 
-            </tfoot>
-        </table>
+            <table class="table table-primary table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Title</th>
+                        <th scope="col" class="text-center">Artist</th>
+                        <th scope="col" class="text-center">Year</th>
+                        <th scope="col" class="text-center">Genre</th>
+                        <th scope="col" class="text-center">Fav</th>
+                        <th scope="col" class="text-center">Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($songs as $song) { ?>
+                        <tr scope="row" >
+                            <td class="text-center"><?= truncateTitle25($song['title']) ?></td>
+                            <td class="text-center"><?= $song['artist_name'] ?></td>
+                            <td class="text-center"><?= $song['year'] ?></td>
+                            <td class="text-center"><?= $song['genre_name'] ?></td>
+                            <td class="text-center">
+                                <a href="./addToFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">+ Fav</button></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
+                        
+                        </tfoot>
+                    </table>
+                </div>
         <div class="mx-auto my-5" >
 
             <?= backButton() ?>
