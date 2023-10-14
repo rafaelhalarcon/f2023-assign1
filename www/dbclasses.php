@@ -1,7 +1,7 @@
 <?php
 function getAllSongs($connection)
 {
-    $conn = DatabaseHelper::connect(DBCONSTRING);
+    $conn = DatabaseHelper::connect(DBCONNSTRING);
     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
     $songsCollection = new SongsDB($conn);
@@ -27,7 +27,7 @@ function addToFav($song)
 function search()
 {
     try {
-        $conn = DatabaseHelper::connect(DBCONSTRING);
+        $conn = DatabaseHelper::connect(DBCONNSTRING);
         // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
         $songsCatalog = new SongsDB($conn);
         $songs = $songsCatalog->getAll();
@@ -87,7 +87,8 @@ function search()
 class DatabaseHelper extends stdClass
 {
     /* Returns a connection object to a database */
-    public static function connect($string) {
+    public static function connect($string)
+    {
 
         $pdo = new PDO($string);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -98,13 +99,13 @@ class DatabaseHelper extends stdClass
     // public static function createConnection($values = array())
     // {
 
-        // $connString = $values[0];
-        // $user = $values[1];
-        // $password = $values[2];
-        // $pdo = new PDO($connString, $user, $password);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        // return $pdo;
+    // $connString = $values[0];
+    // $user = $values[1];
+    // $password = $values[2];
+    // $pdo = new PDO($connString, $user, $password);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    // return $pdo;
     // }
     /*Runs the specified SQLquery using the passed connection and the passed
     passed array of parameter (null if none) */

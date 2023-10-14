@@ -1,8 +1,28 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
 include './dbclasses.php';
+// try {
+//     $pdo = new PDO('sqlite:./db/music.db');
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     $conn = DatabaseHelper::connect(DBCONNSTRING);
+//     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+//     $songsCatalog = new SongsDB($conn);
+//     $topGenreSongs = $songsCatalog->topGenre();
+//     $topArtistSongs = $songsCatalog->topArtist();
+//     $mostPopular = $songsCatalog->mostPopularSongs();
+//     $oneHit = $songsCatalog->oneHitWonders();
+//     $longestAcoustic = $songsCatalog->longestAcoustic();
+//     $atTheClub = $songsCatalog->atTheClub();
+//     $runninSongs = $songsCatalog->runningSongs();
+//     $studyingSongs = $songsCatalog->studyingSongs();
+// } catch (Exception $e) {
+//     die($e->getMessage());
+// } 
+// I TRIED TO CHANGE SOME STUFF BUT IT IS STILL NOT WORKING :(
 try {
-    $conn = DatabaseHelper::connect(DBCONSTRING);
+    $pdo = new PDO('sqlite:./db/music.db');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = DatabaseHelper::connect(DBCONNSTRING);
     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     $songsCatalog = new SongsDB($conn);
     $topGenreSongs = $songsCatalog->topGenre();
@@ -62,7 +82,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Top Artists </h3>
                     <ul class="card-text">
@@ -77,7 +97,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Most Popular Songs </h3>
                     <ul class="card-text">
@@ -90,7 +110,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">One-Hit Wonders</h3>
                     <ul class="card-text">
@@ -105,7 +125,7 @@ try {
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Longest Acoustic Songs</h3>
                     <ul class="card-text">
@@ -119,7 +139,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">At the Club</h3>
                     <ul class="card-text">
@@ -133,7 +153,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Running Songs</h3>
                     <ul class="card-text">
@@ -147,7 +167,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" >
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-header">Studying Songs</h3>
                     <ul class="card-text">
