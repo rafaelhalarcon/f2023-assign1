@@ -50,23 +50,23 @@ try {
                     <div class="form-group p-5">
                         <div class="form-outline">
                             <input type="radio" name="searchField" value="title" required>
-                            <label class="control-label" for="title">Title</label>
-                            <input class="form-control" id="title" type="text" name="title">
+                            <label class="control-label " for="title">Title</label>
+                            <input class="form-control border mb-3" id="title" type="text" name="title">
                         </div>
                         <div class="form-outline mb-4 g-3">
                             <input type="radio" name="searchField" value="artist" required>
                             <label class="control-label" for="artist">Artist</label>
-                            <select class="custom-select" id="artist" name="artist_name">
+                            <select class="custom-select mb-3" id="artist" name="artist_name">
                                 <option value="0">Select an artist</option>
                                 <?php foreach ($songs2 as $song2) { ?>
                                     <option value="<?= $song2['artist_name'] ?>"><?= $song2['artist_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline ">
                             <input type="radio" name="searchField" value="genre_name" required>
                             <label class="control-label" for="genre_name">Genre</label>
-                            <select class="custom-select" id="genre" name="genre_name">
+                            <select class="custom-select mb-3" id="genre" name="genre_name">
                                 <option value="0">Select a genre</option>
                                 <?php foreach ($songs3 as $song3) { ?>
                                     <option value="<?= $song3['genre_name'] ?>"><?= $song3['genre_name'] ?></option>
@@ -75,17 +75,17 @@ try {
                         </div>
                         <input type="radio" name="searchField" id="date" value="date" required>
                         <label for="date">Select a range of years</label>
-                        <div class="row mb-4">
+                        <div class="row m">
                             <div class="col-sm">
                                 <div class="form-outline">
                                     <label class="control-label" for="date1">From</label>
-                                    <input class="form-control" id="date1" type="number" min="2016" max="2019" name="date1">
+                                    <input class="form-control border" id="date1" type="number" min="2016" max="2019" name="date1">
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <div class="form-outline">
                                     <label class="control-label" for="date2">To</label>
-                                    <input class="form-control" id="date2" type="number" min="2016" max="2019" name="date2">
+                                    <input class="form-control border" id="date2" type="number" min="2016" max="2019" name="date2">
                                 </div>
                             </div>
                         </div>
