@@ -45,16 +45,16 @@ if (isset($_SESSION['fav'])) {
 
 <body>
     <section>
-        <h2>Favourite Songs</h2>
-        <table>
+    <div class="card g-3 bg-light bg-gradient">
+        <table class="table table-primary table-striped">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Artist</th>
-                    <th>Year</th>
-                    <th>Genre</th>
-                    <th>Remove</th>
-                    <th>Detail</th>
+                    <th scope="col" class="text-center">Title</th>
+                    <th scope="col" class="text-center">Artist</th>
+                    <th scope="col" class="text-center">Year</th>
+                    <th scope="col" class="text-center">Genre</th>
+                    <th scope="col" class="text-center">Remove</th>
+                    <th scope="col" class="text-center">Detail</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,15 +62,15 @@ if (isset($_SESSION['fav'])) {
                 foreach ($favourites as $fav)
                     foreach ($songs as $song) {
                         if ($fav == $song['song_id']) { ?>
-                        <tr>
-                            <td><?= truncateTitle25($song['title']) ?></td>
-                            <td><?= $song['artist_name'] ?></td>
-                            <td><?= $song['year'] ?></td>
-                            <td><?= $song['genre_name'] ?></td>
-                            <td>
+                        <tr scope="row">
+                            <td class="text-center"><?= truncateTitle25($song['title']) ?></td>
+                            <td class="text-center"><?= $song['artist_name'] ?></td>
+                            <td class="text-center"><?= $song['year'] ?></td>
+                            <td class="text-center"><?= $song['genre_name'] ?></td>
+                            <td class="text-center">
                                 <a href="./deleteFromFavourites.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">Remove</button></a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a href="./single_song.php?song_id=<?= $song['song_id'] ?>"><button class="btn btn-primary border m-1">View</button></a>
                             </td>
                         </tr>
@@ -81,6 +81,8 @@ if (isset($_SESSION['fav'])) {
                 ?>
             </tbody>
         </table>
+
+    </div>
         <div class="mx-auto my-5" style=" width:400px">
             <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button>
 

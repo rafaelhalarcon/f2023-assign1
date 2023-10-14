@@ -45,7 +45,7 @@ try {
 <body>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Top Genre </h3>
                     <ul class="card-text">
@@ -61,7 +61,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">Top Artists </h3>
                     <ul class="card-text">
@@ -76,7 +76,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">Most Popular Songs </h3>
                     <ul class="card-text">
@@ -89,7 +89,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">One-Hit Wonders</h3>
                     <ul class="card-text">
@@ -104,7 +104,7 @@ try {
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">Longest Acoustic Songs</h3>
                     <ul class="card-text">
@@ -118,7 +118,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">At the Club</h3>
                     <ul class="card-text">
@@ -132,7 +132,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">Running Songs</h3>
                     <ul class="card-text">
@@ -146,7 +146,7 @@ try {
         </div>
 
         <div class="col-sm-6">
-            <div class="card" w-50>
+            <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">Studying Songs</h3>
                     <ul class="card-text">
