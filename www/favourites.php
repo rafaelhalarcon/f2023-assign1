@@ -48,6 +48,9 @@ if (isset($_POST['clearFavorites'])) {
 </header>
 
 <body>
+    <form method="post" >
+        <button class="btn btn-primary border m-1 float-end" type="submit" name="clearFavorites" value="Remove All">Remove all</button>
+    </form><br>
     <section>
         <div class="card g-3 bg-light bg-gradient">
             <table class="table table-primary table-striped">
@@ -92,10 +95,6 @@ if (isset($_POST['clearFavorites'])) {
         </div>
         <div class="mx-auto my-5" style=" width:400px">
             <!-- <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button> -->
-            <form method="post">
-                <button class="btn btn-primary border m-1" type="submit" name="clearFavorites" value="Remove All">Remove all</button>
-            </form>
-
             <?= backButton() ?>
         </div>
     </section>
