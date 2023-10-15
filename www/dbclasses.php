@@ -1,7 +1,7 @@
 <?php
 function getAllSongs($connection)
 {
-    $conn = DatabaseHelper::connect(DBCONSTRING);
+    $conn = DatabaseHelper::connect(DBCONNSTRING);
     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
 
     $songsCollection = new SongsDB($conn);
@@ -27,7 +27,7 @@ function addToFav($song)
 function search()
 {
     try {
-        $conn = DatabaseHelper::connect(DBCONSTRING);
+        $conn = DatabaseHelper::connect(DBCONNSTRING);
         // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
         $songsCatalog = new SongsDB($conn);
         $songs = $songsCatalog->getAll();
@@ -87,7 +87,8 @@ function search()
 class DatabaseHelper extends stdClass
 {
     /* Returns a connection object to a database */
-    public static function connect($string) {
+    public static function connect($string)
+    {
 
         $pdo = new PDO($string);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -98,13 +99,13 @@ class DatabaseHelper extends stdClass
     // public static function createConnection($values = array())
     // {
 
-        // $connString = $values[0];
-        // $user = $values[1];
-        // $password = $values[2];
-        // $pdo = new PDO($connString, $user, $password);
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        // return $pdo;
+    // $connString = $values[0];
+    // $user = $values[1];
+    // $password = $values[2];
+    // $pdo = new PDO($connString, $user, $password);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    // return $pdo;
     // }
     /*Runs the specified SQLquery using the passed connection and the passed
     passed array of parameter (null if none) */
@@ -137,7 +138,7 @@ class SongsDB extends stdClass
 {
 
 
-    private static $baseSQL = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(SEC_TO_TIME(s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
+    private static $baseSQL = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , SUBSTR(TIME(3601, 'unixepoch', s.duration),4,5) as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
     FROM songs s
        JOIN artists a ON s.artist_id=a.artist_id
        JOIN genres g ON s.genre_id=g.genre_id
