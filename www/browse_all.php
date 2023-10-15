@@ -3,7 +3,7 @@ include './phpcomponents.inc.php';
 include './dbclasses.php';
 
 try {
-    $conn = DatabaseHelper::connect(DBCONSTRING);
+    $conn = DatabaseHelper::connect(DBCONNSTRING);
     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
     $songsCatalog = new SongsDB($conn);
     $songs = $songsCatalog->getAll();
