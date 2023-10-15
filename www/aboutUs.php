@@ -42,7 +42,7 @@ include './includes/dbclasses.php'; ?>
                 <li>Converting SQLite to MYSQL</li>
                 <p>Initially, we exported and created a MYSQL dump file to work. But, we found that we needed to do everything with an SQLite because it runs serverless. After some struggling, we managed to correct the migration and connected successfully to the database file.</p>
                 <li>VSCode</li>
-                <p>As IDE we used Microsoft VSCode becuse it seamless integration with version control, and its live server capabilities.</p>
+                <p>As IDE we used Microsoft VSCode becuse its seamless integration with version control, and its live server capabilities.</p>
                 <li>Bootstrap</li>
                 <p>We used a CSS preprocessor to style our webpages with a congruent, cohesive design. Most of the recipes we used for bootstraping our pages were original with some inspiration from Material Design and the Official Bootstrap 5.0 documentation.</p>
                 <li>GitHub</li>
