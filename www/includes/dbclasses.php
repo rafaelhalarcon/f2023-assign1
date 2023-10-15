@@ -138,7 +138,7 @@ class SongsDB extends stdClass
 {
 
 
-    private static $baseSQL = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence , strftime('%M:%S', s.duration, 'unixepoch') as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name   
+    private static $baseSQL = "SELECT s.song_id, s.title, s.artist_id, s.genre_id, s.year, s.bpm, s.energy, s.danceability, s.loudness, s.liveness, s.valence, STRFTIME('%M:%S', s.duration, 'unixepoch') as duration, s.acousticness, s.speechiness, s.popularity, a.artist_name, a.artist_type_id, g.genre_name, t.type_name
     FROM songs s
        JOIN artists a ON s.artist_id=a.artist_id
        JOIN genres g ON s.genre_id=g.genre_id
