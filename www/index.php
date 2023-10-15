@@ -1,33 +1,10 @@
 <?php include './configdb.inc.php';
 include './phpcomponents.inc.php';
 include './dbclasses.php';
-// try {
-//     $pdo = new PDO('sqlite:./db/music.db');
-//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     $conn = DatabaseHelper::connect(DBCONNSTRING);
-//     // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
-//     $songsCatalog = new SongsDB($conn);
-//     $topGenreSongs = $songsCatalog->topGenre();
-//     $topArtistSongs = $songsCatalog->topArtist();
-//     $mostPopular = $songsCatalog->mostPopularSongs();
-//     $oneHit = $songsCatalog->oneHitWonders();
-//     $longestAcoustic = $songsCatalog->longestAcoustic();
-//     $atTheClub = $songsCatalog->atTheClub();
-//     $runninSongs = $songsCatalog->runningSongs();
-//     $studyingSongs = $songsCatalog->studyingSongs();
-// } catch (Exception $e) {
-//     die($e->getMessage());
-// } 
-// I HAVE NO IDEA WHY THIS IS DIFFERENT YET STILL WORKING BUT YAHOO :)
 try {
-    // Create a connection to the SQLite database
-    $pdo = new PDO(DBCONNSTRING);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Create instances of your database classes
-    $songsCatalog = new SongsDB($pdo);
-
-    // Fetch data using your database class methods
+    $conn = DatabaseHelper::connect(DBCONSTRING);
+    // $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    $songsCatalog = new SongsDB($conn);
     $topGenreSongs = $songsCatalog->topGenre();
     $topArtistSongs = $songsCatalog->topArtist();
     $mostPopular = $songsCatalog->mostPopularSongs();
