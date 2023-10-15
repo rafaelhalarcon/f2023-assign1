@@ -1,6 +1,6 @@
-<?php include './configdb.inc.php';
-include './phpcomponents.inc.php';
-include './dbclasses.php'; ?>
+<?php include './includes/configdb.inc.php';
+include './includes/phpcomponents.inc.php';
+include './includes/dbclasses.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@ include './dbclasses.php'; ?>
 
     ?>
 
-            <section>
+            <section class="fluid container">
 
                 <h3 style="text-transform: capitalize; color:white; padding-left: 2rem">SONG: <?= $song['title'] ?></h3>
                 <div class="col">

@@ -1,6 +1,6 @@
-<?php include './configdb.inc.php';
-include './phpcomponents.inc.php';
-include './dbclasses.php';
+<?php include './includes/configdb.inc.php';
+include './includes/phpcomponents.inc.php';
+include './includes/dbclasses.php';
 // try {
 //     $pdo = new PDO('sqlite:./db/music.db');
 //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -160,7 +160,7 @@ try {
                 <div class="card-body">
                     <h3 class="card-header">Running Songs</h3>
                     <ul class="card-text">
-                        <?php foreach ($runninSongs as $runningSong) {
+                        <?php foreach ($runningSongs as $runningSong) {
                         ?><li><a href="single_song.php?song_id=<?= $runningSong['song_id'] ?>"><?= truncateTitle25($runningSong['title']) . " - " . $runningSong['artist_name'] . " [BPM: " . $runningSong['bpm'] . "]" ?> </a></li>
 
                         <?php } ?>

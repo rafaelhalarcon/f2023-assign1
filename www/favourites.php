@@ -1,8 +1,8 @@
 <?php session_start();
 ob_start();
-include './configdb.inc.php';
-include './phpcomponents.inc.php';
-include './dbclasses.php';
+include './includes/configdb.inc.php';
+include './includes/phpcomponents.inc.php';
+include './includes/dbclasses.php';
 
 try {
     $conn = DatabaseHelper::connect(DBCONNSTRING);
@@ -56,7 +56,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
 <body>
     <form method="post" action="clearFavourites.php">
-        <button class="btn btn-primary border m-1" type="submit" name="clearFavourites" value="Remove All">Remove all</button>
+        <button class="btn btn-primary border m-1" style="float:right" type="submit" name="clearFavourites" value="Remove All">Remove all</button>
     </form><br>
     <section>
         <div class="card g-3 bg-light bg-gradient">

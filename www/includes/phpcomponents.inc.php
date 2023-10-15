@@ -51,9 +51,9 @@ function footer()
     <hr style="position: relative; top: -20px; left:10px; border: none; height: .5rem;  background: antiquewhite; width:98%;" />
     <div class="container p-4 pb-0 text-center">
         <p class="text-light">&copy; | <?php echo date("Y"); ?> | Arthur Bakir and Rafael Hernandez Alarcon | </p>
-        <a class="btn btn-outline-light btn-floating m-1" href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/mountroyal4u" target="_blank"><i class="fab fa-twitter-square"></i></a>
         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rafaelhalarcon/f2023-assign1" target="_blank"><i class="fab fa-github"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/school/mount-royal-university" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
 <?php }
 

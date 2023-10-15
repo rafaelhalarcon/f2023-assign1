@@ -1,6 +1,6 @@
-<?php include './configdb.inc.php';
-include './phpcomponents.inc.php';
-include './dbclasses.php';
+<?php include './includes/configdb.inc.php';
+include './includes/phpcomponents.inc.php';
+include './includes/dbclasses.php';
 
 try {
     $conn = DatabaseHelper::connect(DBCONNSTRING);

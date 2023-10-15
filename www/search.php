@@ -1,6 +1,6 @@
-<?php include './configdb.inc.php';
-include './phpcomponents.inc.php';
-include './dbclasses.php';
+<?php include './includes/configdb.inc.php';
+include './includes/phpcomponents.inc.php';
+include './includes/dbclasses.php';
 
 try {
     $conn = DatabaseHelper::connect(DBCONNSTRING);
@@ -39,70 +39,70 @@ try {
 </header>
 
 <body>
-    <div class="mx-auto">
+    <div class="mx-auto" style="width: 60vh">
 
 
-    </div>
 
-    <div class="container-fluid">
-        <div class="col px-md-5 g-5">
-            <div class="card g-5 bg-light bg-gradient">
-                <form action="./browse_search_results.php" method="GET" id="form">
-                    <div class="form-group p-5">
-                        <div class="form-outline">
-                            <input type="radio" name="searchField" value="title" required>
-                            <label class="control-label " for="title">Title</label>
-                            <input class="form-control border mb-3" id="title" type="text" name="title">
-                        </div>
-                        <div class="form-outline mb-4 g-3">
-                            <input type="radio" name="searchField" value="artist" required>
-                            <label class="control-label" for="artist">Artist</label>
-                            <select class="custom-select mb-3" id="artist" name="artist_name">
-                                <option value="0">Select an artist</option>
-                                <?php foreach ($songs2 as $song2) { ?>
-                                    <option value="<?= $song2['artist_name'] ?>"><?= $song2['artist_name'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-outline ">
-                            <input type="radio" name="searchField" value="genre_name" required>
-                            <label class="control-label" for="genre_name">Genre</label>
-                            <select class="custom-select mb-3" id="genre" name="genre_name">
-                                <option value="0">Select a genre</option>
-                                <?php foreach ($songs3 as $song3) { ?>
-                                    <option value="<?= $song3['genre_name'] ?>"><?= $song3['genre_name'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <input type="radio" name="searchField" id="date" value="date" required>
-                        <label for="date">Select a range of years</label>
-                        <div class="row m">
-                            <div class="col-sm">
-                                <div class="form-outline">
-                                    <label class="control-label" for="date1">From</label>
-                                    <input class="form-control border" id="date1" type="number" min="2016" max="2019" name="date1">
+        <div class="container-fluid py-1">
+            <div class="col px-md-5 g-5">
+                <div class="card g-5 bg-light bg-gradient">
+                    <form action="./browse_search_results.php" method="GET" id="form">
+                        <div class="form-group p-5">
+                            <div class="form-outline">
+                                <input type="radio" name="searchField" value="title" required>
+                                <label class="control-label " for="title">Title</label>
+                                <input class="form-control border mb-3" id="title" type="text" name="title">
+                            </div>
+                            <div class="form-outline mb-4 g-3">
+                                <input type="radio" name="searchField" value="artist" required>
+                                <label class="control-label" for="artist">Artist</label>
+                                <select class="custom-select mb-3" id="artist" name="artist_name">
+                                    <option value="0">Select an artist</option>
+                                    <?php foreach ($songs2 as $song2) { ?>
+                                        <option value="<?= $song2['artist_name'] ?>"><?= $song2['artist_name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-outline ">
+                                <input type="radio" name="searchField" value="genre_name" required>
+                                <label class="control-label" for="genre_name">Genre</label>
+                                <select class="custom-select mb-3" id="genre" name="genre_name">
+                                    <option value="0">Select a genre</option>
+                                    <?php foreach ($songs3 as $song3) { ?>
+                                        <option value="<?= $song3['genre_name'] ?>"><?= $song3['genre_name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <input type="radio" name="searchField" id="date" value="date" required>
+                            <label for="date">Select a range of years</label>
+                            <div class="row m">
+                                <div class="col-sm">
+                                    <div class="form-outline">
+                                        <label class="control-label" for="date1">From</label>
+                                        <input class="form-control border" id="date1" type="number" min="2016" max="2019" name="date1">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-outline">
+                                        <label class="control-label" for="date2">To</label>
+                                        <input class="form-control border" id="date2" type="number" min="2016" max="2019" name="date2">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm">
-                                <div class="form-outline">
-                                    <label class="control-label" for="date2">To</label>
-                                    <input class="form-control border" id="date2" type="number" min="2016" max="2019" name="date2">
-                                </div>
+                        </div>
+                        <div class="mx-auto" style=" width:400px">
+                            <div class="p-5 ">
+
+                                <button class="btn btn-primary border m-1" type="submit" value="Submit" form_id="form">Submit</button>
+                                <?= backButton(); ?>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mx-auto" style=" width:400px">
-                        <div class="p-5 ">
 
-                            <button class="btn btn-primary border m-1" type="submit" value="Submit" form_id="form">Submit</button>
-                            <?= backButton(); ?>
                         </div>
-
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+
     </div>
 </body>
 <footer>
